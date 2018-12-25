@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_FacebookPlugin
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mpinstagramfeed>
+            <general>
+                <enabled>0</enabled>
+            </general>
+            <display>
+                <total_number>12</total_number>
+                <sort_by>recent</sort_by>
+                <layout>multiple</layout>
+                <number_row>2</number_row>
+                <number_photo>6</number_photo>
+                <image_resolution>thumbnail</image_resolution>
+                <show_like_comment>0</show_like_comment>
+                <Show_popup>0</Show_popup>
+            </display>
+        </mpinstagramfeed>
+    </default>
+</config>
