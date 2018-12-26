@@ -18,7 +18,6 @@ namespace Mageplaza\InstagramFeed\Helper;
 
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\ObjectManagerInterface;
-use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData;
@@ -26,6 +25,9 @@ use Mageplaza\Core\Helper\AbstractData;
 class Data extends AbstractData
 {
     const CONFIG_MODULE_PATH = 'mpinstagramfeed';
+
+    public $code = '';
+    public $token = '';
 
     /**
      * Data constructor.
@@ -64,6 +66,16 @@ class Data extends AbstractData
     }
 
     /**
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getAccessToken($storeId = null)
+    {
+        return $this->getConfigGeneral('access_token',$storeId);
+    }
+
+    /**
      * @return string
      * @throws \Magento\Framework\Exception\LocalizedException
      */
@@ -79,9 +91,7 @@ class Data extends AbstractData
             '_secure' => $store->isUrlSecure()
         ]);
 
-        $param = 'hauth.done=instagram';
-
-        return $authUrl . ($param ? (strpos($authUrl, '?') ? '&' : '?') . $param : '');
+        return $authUrl;
     }
 
     /**

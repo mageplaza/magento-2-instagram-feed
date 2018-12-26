@@ -18,42 +18,40 @@ namespace Mageplaza\InstagramFeed\Controller\Auth;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\Result\RawFactory;
+use Mageplaza\InstagramFeed\Helper\Data;
 
 class Callback extends Action
 {
-    public function __construct(Context $context)
+    /**
+     * @var \Magento\Framework\Controller\Result\RawFactory
+     */
+    protected $resultRawFactory;
+
+    protected $helperData;
+
+    public function __construct(
+        Context $context,
+        RawFactory $resultRawFactory,
+        Data $helperData
+    )
     {
+        $this->resultRawFactory = $resultRawFactory;
+        $this->helperData = $helperData;
+
         parent::__construct($context);
     }
 
     /**
-     * @inheritdoc
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
      */
     public function execute()
     {
-        if ($this->checkRequest('hauth_start', false) && (
-                $this->checkRequest('error_reason', 'user_denied')
-                && $this->checkRequest('error', 'access_denied')
-                && $this->checkRequest('error_code', '200')
-            )) {
-            return $this->_appendJs(sprintf("<script>window.close();</script>"));
+        if ($this->checkRequest('code')) {
+            $this->helperData->code = $this->getRequest()->getParam('code');
+
+            echo 'This is your code: ' .$this->helperData->code;
         }
-
-        \Hybrid_Endpoint::process();
-    }
-
-    /**
-     * Return javascript to redirect when login success
-     *
-     * @param null $content
-     * @return \Magento\Framework\Controller\Result\Raw
-     */
-    public function _appendJs($content = null)
-    {
-        /** @var \Magento\Framework\Controller\Result\Raw $resultRaw */
-        $resultRaw = $this->resultRawFactory->create();
-
-        return $resultRaw->setContents($content ?: sprintf("<script>window.opener.socialCallback('%s', window);</script>", $this->_loginPostRedirect()));
     }
 
     /**
@@ -70,5 +68,37 @@ class Callback extends Action
         }
 
         return $param;
+    }
+
+    /**
+     * @param $code
+     *
+     * @return mixed
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function api($code)
+    {
+        $param = array(
+            'client_id'     => $this->helperData->getClientId(),
+            'client_secret' => $this->helperData->getClientSecret(),
+            'grant_type'    => 'authorization_code',
+            'redirect_uri'  => $this->helperData->getAuthUrl(),
+            'code'          => $code
+        );
+
+        $url = 'https://api.instagram.com/oauth/access_token';
+
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, count($param));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+
+        $result = curl_exec($ch);
+
+        curl_close($ch);
+        $result = json_decode($result);
+
+        return $result;
     }
 }

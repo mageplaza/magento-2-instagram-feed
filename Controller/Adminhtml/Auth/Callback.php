@@ -19,6 +19,9 @@ namespace Mageplaza\InstagramFeed\Controller\Adminhtml\Auth;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\RawFactory;
+use Mageplaza\InstagramFeed\Helper\Data;
+use Psr\Log\LoggerInterface;
+use Mageplaza\InstagramFeed\Model\System\Config\Backend\SaveData;
 
 class Callback extends Action
 {
@@ -27,32 +30,68 @@ class Callback extends Action
      */
     protected $resultRawFactory;
 
-    protected $apiObject;
+    protected $helperData;
+
+    protected $logger;
+
+    protected $config;
 
     public function __construct(
         Context $context,
-        RawFactory $resultRawFactory
+        RawFactory $resultRawFactory,
+        LoggerInterface $logger,
+        Data $helperData,
+        SaveData $saveData
     )
     {
-        parent::__construct($context);
         $this->resultRawFactory = $resultRawFactory;
+        $this->helperData = $helperData;
+        $this->logger = $logger;
+        $this->config = $saveData;
+
+        parent::__construct($context);
     }
 
     /**
-     * @inheritdoc
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Raw|\Magento\Framework\Controller\ResultInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function execute()
     {
+        $result = ['status' => false];
+        $params = $this->getRequest()->getParams();
+        if ($params && $params['client_id'] && $params['client_secret'] && $params['code']){
+            try {
+                $token = $this->getToken($params['client_id'],$params['client_secret'],$params['code']);
+                foreach ($token as $item => $value) {
 
-        if ($this->checkRequest('hauth_start', false) && (
-                $this->checkRequest('error_reason', 'user_denied')
-                && $this->checkRequest('error', 'access_denied')
-                && $this->checkRequest('error_code', '200')
-            )) {
-            return $this->_appendJs(sprintf("<script>window.close();</script>"));
+                    if ($item == 'access_token'){
+                        $this->helperData->token = $value;
+                        $this->config->setConfig($value);
+                        $result = [
+                            'status'  => true,
+                            'content' => __('Get access_token successfully!')
+                        ];
+                    }
+                    else {
+                        $result = [
+                            'status'  => false,
+                            'content' => $value
+                        ];
+                    }
+                }
+
+            }
+            catch (\Exception $e) {
+                $result['content'] = $e->getMessage();
+                $this->logger->critical($e);
+            }
+        }
+        else {
+            $result['content'] = __('Please fill your client information.');
         }
 
-        \Hybrid_Endpoint::process();
+        return $this->getResponse()->representJson(Data::jsonEncode($result));
     }
 
     /**
@@ -66,7 +105,7 @@ class Callback extends Action
         /** @var \Magento\Framework\Controller\Result\Raw $resultRaw */
         $resultRaw = $this->resultRawFactory->create();
 
-        return $resultRaw->setContents($content ?: sprintf("<script>window.opener.socialCallback('%s', window);</script>"));
+        return $resultRaw->setContents($content);
     }
 
     /**
@@ -83,5 +122,37 @@ class Callback extends Action
         }
 
         return $param;
+    }
+
+    /**
+     * @param $code
+     *
+     * @return mixed
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getToken($id,$secret,$code)
+    {
+        $param = array(
+            'client_id'     => $id,
+            'client_secret' => $secret,
+            'grant_type'    => 'authorization_code',
+            'redirect_uri'  => $this->helperData->getAuthUrl(),
+            'code'          => $code
+        );
+
+        $url = 'https://api.instagram.com/oauth/access_token';
+
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, count($param));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+
+        $result = curl_exec($ch);
+
+        curl_close($ch);
+        $result = json_decode($result);
+
+        return $result;
     }
 }

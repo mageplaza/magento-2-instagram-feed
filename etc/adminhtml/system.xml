@@ -47,9 +47,17 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
+                <field id="code" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Code</label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[Refer to this <a href="https://www.instagram.com/developer/authentication/" target="_blank">link</a> to get the code]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
                 <field id="token" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <button_label>Get your access Token</button_label>
-                    <button_url>adminhtml/auth/callback</button_url>
+                    <button_url>mpinstagramfeed/auth/callback</button_url>
                     <frontend_model>Mageplaza\InstagramFeed\Block\Adminhtml\System\Config\Button</frontend_model>
                     <depends>
                         <field id="enabled">1</field>
