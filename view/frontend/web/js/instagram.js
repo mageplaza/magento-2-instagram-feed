@@ -43,6 +43,20 @@ define([
                     var x;
                     var Imageurl;
                     var id = '#mpinstagramfeed-photos-'+ self.options.id;
+                    switch(self.options.sort) {
+                        case 'like':
+                            data.data.sort(function(a,b){return b.likes.count - a.likes.count});
+                            break;
+                        case 'comment':
+                            data.data.sort(function(a,b){return b.comments.count - a.comments.count});
+                            break;
+                        case 'random':
+                            data.data.sort(function(){return Math.random() - Math.random()});
+                            break;
+                        default:
+                            data.data.sort(function(a,b){return b.created_time - a.created_time });
+                    }
+
                     for( x in data.data ){
                         switch(self.options.image_resolution) {
                             case 'low':
@@ -54,7 +68,7 @@ define([
                             default:
                                 Imageurl = data.data[x].images.thumbnail.url;
                         }
-                        $(id).append('<a class="mpinstagramfeed-post-url" href="'+data.data[x].link+'" target="_blank"><img class="mpinstagramfeed-image" src="'+Imageurl+'"></a>');
+                        $(id).append('<div class="mpinstagramfeed-photo"><a class="mpinstagramfeed-post-url" href="'+data.data[x].link+'" target="_blank"><i class="fa fa-heart">'+data.data[x].likes.count+'</i><i class="fa fa-comment">'+data.data[x].comments.count+'</i><img class="mpinstagramfeed-image" src="'+Imageurl+'"></a></div>');
                         // data.data[x].images.low_resolution.url - URL of image, 306х306
                         // data.data[x].images.thumbnail.url - URL of image 150х150
                         // data.data[x].images.standard_resolution.url - URL of image 612х612

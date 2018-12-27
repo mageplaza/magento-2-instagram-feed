@@ -15,7 +15,22 @@
  */
 
 $block->getAllOptions();
+\Zend_Debug::dump($block->getData());
 $id = uniqid();
+$total = $block->getData('total_number');
+$layout = $block->getData('layout');
+switch ($layout) {
+    case \Mageplaza\InstagramFeed\Model\Config\Source\Layout::MULTIPLE:
+        $number_row = $block->getData('number_row');
+        break;
+    case  \Mageplaza\InstagramFeed\Model\Config\Source\Layout::OPTIMIZED:
+        $number_row = 3;
+        break;
+    default:
+        $number_row = 1;
+};
+$number_photo = $total/$number_row;
+$width = 100/ $number_photo;
 ?>
 
 <div class="mpinstagramfeed-container">
@@ -31,7 +46,7 @@ $id = uniqid();
             "mageplaza/instagram": {
                 "id": "<?php /* @escapeNotVerified */ echo $id ?>",
                 "token": "<?php /* @escapeNotVerified */ echo $block->getAccessToken() ?>",
-                "count": "<?php /* @escapeNotVerified */ echo $block->getData('total_number') ?>",
+                "count": "<?php /* @escapeNotVerified */ echo $total ?>",
                 "sort": "<?php /* @escapeNotVerified */ echo $block->getData('sort_by') ?>",
                 "image_resolution": "<?php /* @escapeNotVerified */ echo $block->getData('image_resolution') ?>"
             }
@@ -39,8 +54,34 @@ $id = uniqid();
     }
 </script>
 <style type="text/css">
-    .mpinstagramfeed-container img.mpinstagramfeed-image {
-        width: 15%;
+    .mpinstagramfeed-container .mpinstagramfeed-photo {
+        width: calc(<?php echo $width . '%' ?> - 4px);
         margin: 2px;
+        display: inline-block;
+        position: relative;
     }
+    .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
+        font-size: 20px;
+        text-align: left;
+        line-height: 18px;
+        letter-spacing: normal;
+        position: absolute;
+        bottom: 50%;
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        color: #F0F0F0;
+    }
+    <?php if ($block->getData('show_like_comment') == 1): ?>
+    .mpinstagramfeed-photo:hover .fa {
+        opacity: 1 !important;
+    }
+    <?php endif; ?>
+    i.fa.fa-comment {
+        right: 30%;
+    }
+
+    i.fa.fa-heart {
+        left: 30%;
+    }
+
 </style>

@@ -20,8 +20,8 @@ namespace Mageplaza\InstagramFeed\Model\Config\Source;
 class SortBy implements \Magento\Framework\Option\ArrayInterface
 {
     const MOST_RECENT = 'recent';
-    const MOST_LIKED   = 'liked';
-    const MOST_COMMENTED = 'commented';
+    const MOST_LIKED   = 'like';
+    const MOST_COMMENTED = 'comment';
     const RANDOM = 'random';
 
     /**

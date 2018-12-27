@@ -51,18 +51,12 @@
             </parameter>
             <parameter name="number_row" xsi:type="text" required="false" visible="true">
                 <label translate="true">Number of row</label>
+                <description>This value only applies to desktop and images will be automatically responsive depending on the device</description>
                 <depends>
                     <parameter name="design" value="1" />
                     <parameter name="layout" value="multiple" />
                 </depends>
                 <value>2</value>
-            </parameter>
-            <parameter name="number_photo" xsi:type="text" required="false" visible="true">
-                <label>Number of photos each row</label>
-                <depends>
-                    <parameter name="design" value="1" />
-                </depends>
-                <value>6</value>
             </parameter>
             <parameter name="image_resolution" xsi:type="select" required="false" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\Image">
                 <label translate="true">Image resolutions</label>

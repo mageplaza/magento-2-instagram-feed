@@ -80,14 +80,9 @@
                 </field>
                 <field id="number_row" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Number of row</label>
+                    <comment>This value only applies to desktop and images will be automatically responsive depending on the device</comment>
                     <depends>
                         <field id="layout">multiple</field>
-                    </depends>
-                </field>
-                <field id="number_photo" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Number of photos each row</label>
-                    <depends>
-                        <field id="layout" separator=",">single,multiple</field>
                     </depends>
                 </field>
                 <field id="image_resolution" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
