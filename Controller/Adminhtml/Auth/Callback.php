@@ -64,19 +64,18 @@ class Callback extends Action
             try {
                 $token = $this->getToken($params['client_id'],$params['client_secret'],$params['code']);
                 foreach ($token as $item => $value) {
-
-                    if ($item == 'access_token'){
+                    if ($item == 'error_message'){
+                        $result = [
+                            'status'  => false,
+                            'content' => $value
+                        ];
+                    }
+                    else {
                         $this->helperData->token = $value;
                         $this->config->setConfig($value);
                         $result = [
                             'status'  => true,
                             'content' => __('Get access_token successfully!')
-                        ];
-                    }
-                    else {
-                        $result = [
-                            'status'  => false,
-                            'content' => $value
                         ];
                     }
                 }

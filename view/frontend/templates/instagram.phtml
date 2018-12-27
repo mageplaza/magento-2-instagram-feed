@@ -1,0 +1,40 @@
+<?php
+/**
+ * Mageplaza
+ * NOTICE OF LICENSE
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ * DISCLAIMER
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * @category    Mageplaza
+ * @package     Mageplaza_InstagramFeed
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+$block->getAllOptions();
+$id = uniqid();
+?>
+
+<div class="mpinstagramfeed-container">
+    <div class="mpinstagramfeed-header">
+        <h3><?php /* @escapeNotVerified */ echo $block->getData('title') ?></h3>
+        <div><?php /* @escapeNotVerified */ echo $block->getData('description') ?></div>
+    </div>
+    <div id="mpinstagramfeed-photos-<?php echo $id?>" class="col-6 mp-6"></div>
+</div>
+<script type="text/x-magento-init">
+    {
+        ".mpinstagramfeed-container": {
+            "mageplaza/instagram": {
+                "id": "<?php /* @escapeNotVerified */ echo $id ?>",
+                "token": "<?php /* @escapeNotVerified */ echo $block->getAccessToken() ?>",
+                "count": "<?php /* @escapeNotVerified */ echo $block->getData('total_number') ?>",
+                "sort": "<?php /* @escapeNotVerified */ echo $block->getData('sort_by') ?>",
+                "image_resolution": "<?php /* @escapeNotVerified */ echo $block->getData('image_resolution') ?>"
+            }
+        }
+    }
+</script>

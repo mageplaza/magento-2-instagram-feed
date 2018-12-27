@@ -108,4 +108,14 @@ class Data extends AbstractData
 
         return $scope;
     }
+
+    /**
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getDisplayConfig($storeId = null)
+    {
+        return $this->getModuleConfig('display',$storeId);
+    }
 }
