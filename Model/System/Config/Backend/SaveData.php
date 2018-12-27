@@ -24,18 +24,15 @@ class SaveData
     protected $_logger;
     protected $_storeManager;
     protected $_configWriter;
-    protected $helperData;
 
     public function __construct(
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\App\Config\Storage\WriterInterface $configWriter,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Mageplaza\InstagramFeed\Helper\Data $helperData
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ){
         $this->_logger = $logger;
         $this->_configWriter = $configWriter;
         $this->_storeManager = $storeManager;
-        $this->helperData = $helperData;
     }
 
     public function setConfig($value)
@@ -44,9 +41,7 @@ class SaveData
         $websites = $this->_storeManager->getWebsites();
         $scope = "websites";
         foreach($websites as $website) {
-            echo $website->getId().":\n";
-
-            $this->_configWriter->save('mpinstagramfeed/general/access_token', $this->helperData->token, $scope, $website->getId());
+            $this->_configWriter->save('mpinstagramfeed/general/access_token', $value, $scope, $website->getId());
         }
 
         return $this;

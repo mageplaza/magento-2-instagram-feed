@@ -23,7 +23,7 @@ namespace Mageplaza\InstagramFeed\Block;
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\InstagramFeed\Helper\Data;
-use Mageplaza\FacebookPlugin\Model\Config\Source\Options;
+use Mageplaza\InstagramFeed\Model\Config\Source\Design;
 
 class Widget extends Template implements BlockInterface
 {
@@ -49,7 +49,7 @@ class Widget extends Template implements BlockInterface
      */
     public function getAllOptions() {
         $option = $this->getData('design');
-        if ($option == Options::CONFIG) {
+        if ($option == Design::CONFIG) {
             $this->setData(array_merge($this->helperData->getDisplayConfig($this->getStoreId()),$this->getData()));
         }
     }

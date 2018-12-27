@@ -63,23 +63,19 @@ class Callback extends Action
         if ($params && $params['client_id'] && $params['client_secret'] && $params['code']){
             try {
                 $token = $this->getToken($params['client_id'],$params['client_secret'],$params['code']);
-                foreach ($token as $item => $value) {
-                    if ($item == 'error_message'){
-                        $result = [
-                            'status'  => false,
-                            'content' => $value
-                        ];
-                    }
-                    else {
-                        $this->helperData->token = $value;
-                        $this->config->setConfig($value);
+                if (isset($token['access_token'])){
+                        $this->config->setConfig($token['access_token']);
                         $result = [
                             'status'  => true,
                             'content' => __('Get access_token successfully!')
                         ];
                     }
+                if (isset($token['error_message'])){
+                    $result = [
+                        'status'  => false,
+                        'content' => $token['error_message']
+                    ];
                 }
-
             }
             catch (\Exception $e) {
                 $result['content'] = $e->getMessage();
@@ -150,7 +146,7 @@ class Callback extends Action
         $result = curl_exec($ch);
 
         curl_close($ch);
-        $result = json_decode($result);
+        $result = json_decode($result,true);
 
         return $result;
     }

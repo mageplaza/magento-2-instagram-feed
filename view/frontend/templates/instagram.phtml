@@ -23,7 +23,7 @@ $id = uniqid();
         <h3><?php /* @escapeNotVerified */ echo $block->getData('title') ?></h3>
         <div><?php /* @escapeNotVerified */ echo $block->getData('description') ?></div>
     </div>
-    <div id="mpinstagramfeed-photos-<?php echo $id?>" class="col-6 mp-6"></div>
+    <div id="mpinstagramfeed-photos-<?php echo $id?>"></div>
 </div>
 <script type="text/x-magento-init">
     {
@@ -38,3 +38,9 @@ $id = uniqid();
         }
     }
 </script>
+<style type="text/css">
+    .mpinstagramfeed-container img.mpinstagramfeed-image {
+        width: 15%;
+        margin: 2px;
+    }
+</style>
