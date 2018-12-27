@@ -29,6 +29,11 @@ class Widget extends Template implements BlockInterface
 {
     protected $_template = "instagram.phtml";
 
+    public $widgetId;
+
+    /**
+     * @var Data
+     */
     protected $helperData;
 
     public function __construct(
@@ -38,7 +43,7 @@ class Widget extends Template implements BlockInterface
     )
     {
         $this->helperData = $helperData;
-
+        $this->widgetId = uniqid();
         parent::__construct($context, $data);
     }
 

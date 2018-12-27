@@ -68,6 +68,7 @@
                 <label>Display</label>
                 <field id="total_number" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Total number of photos</label>
+                    <validate>required-entry</validate>
                     <comment>The maximum number is 20.</comment>
                 </field>
                 <field id="sort_by" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">

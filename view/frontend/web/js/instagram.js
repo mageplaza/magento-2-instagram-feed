@@ -14,11 +14,12 @@
  */
 define([
     "jquery",
-    "mage/translate"
-], function ($,$t) {
+    'Mageplaza_InstagramFeed/js/lib/shuffle.min'
+], function ($) {
     "use strict";
     $.widget('mageplaza.instagram', {
         options: {
+            id: '',
             token: '',
             count: '',
             sort: '',
@@ -30,6 +31,7 @@ define([
 
         _ajaxSubmit: function () {
             var self = this;
+            var id = '#mpinstagramfeed-photos-'+ this.options.id;
             $.ajax({
                 url: "https://api.instagram.com/v1/users/self/media/recent/",
                 data: {
@@ -39,10 +41,8 @@ define([
                 dataType: 'json',
                 type: 'GET',
                 success: function (data) {
-                    console.log(data);
                     var x;
                     var Imageurl;
-                    var id = '#mpinstagramfeed-photos-'+ self.options.id;
                     switch(self.options.sort) {
                         case 'like':
                             data.data.sort(function(a,b){return b.likes.count - a.likes.count});
@@ -68,11 +68,12 @@ define([
                             default:
                                 Imageurl = data.data[x].images.thumbnail.url;
                         }
-                        $(id).append('<div class="mpinstagramfeed-photo"><a class="mpinstagramfeed-post-url" href="'+data.data[x].link+'" target="_blank"><i class="fa fa-heart">'+data.data[x].likes.count+'</i><i class="fa fa-comment">'+data.data[x].comments.count+'</i><img class="mpinstagramfeed-image" src="'+Imageurl+'"></a></div>');
-                        // data.data[x].images.low_resolution.url - URL of image, 306х306
-                        // data.data[x].images.thumbnail.url - URL of image 150х150
-                        // data.data[x].images.standard_resolution.url - URL of image 612х612
-                        // data.data[x].link - Instagram post URL
+                        $(id).append('<div class="mpinstagramfeed-photo">' +
+                            '<a class="mpinstagramfeed-post-url" href="'+data.data[x].link+'" target="_blank">' +
+                            '<i class="fa fa-heart">'+data.data[x].likes.count+'</i>' +
+                            '<i class="fa fa-comment">'+data.data[x].comments.count+'</i>' +
+                            '<img class="mpinstagramfeed-image" src="'+Imageurl+'">' +
+                            '</a></div>');
                     }
                 },
                 error: function (data) {

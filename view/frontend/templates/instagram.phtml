@@ -15,8 +15,7 @@
  */
 
 $block->getAllOptions();
-\Zend_Debug::dump($block->getData());
-$id = uniqid();
+$id = $block->widgetId;
 $total = $block->getData('total_number');
 $layout = $block->getData('layout');
 switch ($layout) {
@@ -29,7 +28,7 @@ switch ($layout) {
     default:
         $number_row = 1;
 };
-$number_photo = $total/$number_row;
+$number_photo = round($total/$number_row);
 $width = 100/ $number_photo;
 ?>
 
@@ -42,7 +41,7 @@ $width = 100/ $number_photo;
 </div>
 <script type="text/x-magento-init">
     {
-        ".mpinstagramfeed-container": {
+        "#mpinstagramfeed-photos-<?php echo $id?>": {
             "mageplaza/instagram": {
                 "id": "<?php /* @escapeNotVerified */ echo $id ?>",
                 "token": "<?php /* @escapeNotVerified */ echo $block->getAccessToken() ?>",
@@ -56,32 +55,12 @@ $width = 100/ $number_photo;
 <style type="text/css">
     .mpinstagramfeed-container .mpinstagramfeed-photo {
         width: calc(<?php echo $width . '%' ?> - 4px);
-        margin: 2px;
-        display: inline-block;
-        position: relative;
     }
-    .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
-        font-size: 20px;
-        text-align: left;
-        line-height: 18px;
-        letter-spacing: normal;
-        position: absolute;
-        bottom: 50%;
-        opacity: 0;
-        background-color: rgba(0, 0, 0, 0.3);
-        color: #F0F0F0;
-    }
+
     <?php if ($block->getData('show_like_comment') == 1): ?>
     .mpinstagramfeed-photo:hover .fa {
         opacity: 1 !important;
     }
     <?php endif; ?>
-    i.fa.fa-comment {
-        right: 30%;
-    }
-
-    i.fa.fa-heart {
-        left: 30%;
-    }
 
 </style>

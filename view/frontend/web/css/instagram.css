@@ -1,0 +1,34 @@
+.mpinstagramfeed-container .mpinstagramfeed-photo {
+    margin: 2px;
+    display: inline-block;
+    position: relative;
+}
+@media (max-width: 767px) {
+    .mpinstagramfeed-container .mpinstagramfeed-photo {
+        width: 100%;
+    }
+}
+@media (min-width: 767px) and (max-width: 1024px) {
+    .mpinstagramfeed-container .mpinstagramfeed-photo {
+        width: 30%;
+    }
+}
+.mpinstagramfeed-container .mpinstagramfeed-photo .fa {
+    font-size: 20px;
+    text-align: left;
+    line-height: 18px;
+    letter-spacing: normal;
+    position: absolute;
+    bottom: 50%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #F0F0F0;
+}
+
+i.fa.fa-comment {
+  left: 50%;
+}
+
+i.fa.fa-heart {
+    left: 30%;
+}
