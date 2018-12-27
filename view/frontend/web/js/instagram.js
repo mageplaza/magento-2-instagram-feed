@@ -13,8 +13,7 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 define([
-    "jquery",
-    'Mageplaza_InstagramFeed/js/lib/shuffle.min'
+    "jquery"
 ], function ($) {
     "use strict";
     $.widget('mageplaza.instagram', {
@@ -68,7 +67,7 @@ define([
                             default:
                                 Imageurl = data.data[x].images.thumbnail.url;
                         }
-                        $(id).append('<div class="mpinstagramfeed-photo">' +
+                        $(id).append('<div class="mpinstagramfeed-photo shuffle-item shuffle-item--visible">' +
                             '<a class="mpinstagramfeed-post-url" href="'+data.data[x].link+'" target="_blank">' +
                             '<i class="fa fa-heart">'+data.data[x].likes.count+'</i>' +
                             '<i class="fa fa-comment">'+data.data[x].comments.count+'</i>' +

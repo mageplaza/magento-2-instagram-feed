@@ -39,6 +39,18 @@ $width = 100/ $number_photo;
     </div>
     <div id="mpinstagramfeed-photos-<?php echo $id?>"></div>
 </div>
+<style type="text/css">
+    .mpinstagramfeed-container .mpinstagramfeed-photo {
+        width: calc(<?php echo $width . '%' ?> - 4px);
+    }
+
+    <?php if ($block->getData('show_like_comment') == 1): ?>
+    .mpinstagramfeed-photo:hover .fa {
+        opacity: 1 !important;
+    }
+    <?php endif; ?>
+
+</style>
 <script type="text/x-magento-init">
     {
         "#mpinstagramfeed-photos-<?php echo $id?>": {
@@ -52,15 +64,10 @@ $width = 100/ $number_photo;
         }
     }
 </script>
-<style type="text/css">
-    .mpinstagramfeed-container .mpinstagramfeed-photo {
-        width: calc(<?php echo $width . '%' ?> - 4px);
-    }
-
-    <?php if ($block->getData('show_like_comment') == 1): ?>
-    .mpinstagramfeed-photo:hover .fa {
-        opacity: 1 !important;
-    }
-    <?php endif; ?>
-
-</style>
+<script>
+    require(['jquery', 'Mageplaza_InstagramFeed/js/lib/shuffle.min'], function ($,Shuffle) {
+        window.shuffleInstance = new Shuffle(document.querySelector('.mpinstagramfeed-container'), {
+            itemSelector: '.shuffle-item',
+        });
+    });
+</script>
