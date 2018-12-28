@@ -41,7 +41,7 @@
                     </depends>
                 </field>
                 <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>REDIRECT URIS</label>
+                    <label>Redirect URI</label>
                     <frontend_model>Mageplaza\InstagramFeed\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
                     <depends>
                         <field id="enabled">1</field>
@@ -49,7 +49,6 @@
                 </field>
                 <field id="code" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Code</label>
-                    <validate>required-entry</validate>
                     <comment><![CDATA[Refer to this <a href="https://www.instagram.com/developer/authentication/" target="_blank">link</a> to get the code]]></comment>
                     <depends>
                         <field id="enabled">1</field>
@@ -91,7 +90,7 @@
                     <source_model>Mageplaza\InstagramFeed\Model\Config\Source\Image</source_model>
                 </field>
                 <field id="show_like_comment" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show number of Like/Comment</label>
+                    <label>Show number of Likes/ Comments</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to show number of Like/Comment when hover image.</comment>
                 </field>

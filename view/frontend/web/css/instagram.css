@@ -24,11 +24,13 @@
     background-color: rgba(0, 0, 0, 0.3);
     color: #F0F0F0;
 }
-
-i.fa.fa-comment {
-  left: 50%;
+.mpinstagramfeed-photo:hover .fa {
+    opacity: 1 !important;
 }
 
-i.fa.fa-heart {
-    left: 30%;
+.my-sizer-element {
+    width: 8.33333%;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
 }

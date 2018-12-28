@@ -41,7 +41,7 @@ class Layout implements \Magento\Framework\Option\ArrayInterface
             ],
             [
                 'value' => self::OPTIMIZED,
-                'label' => __('Optimized Image')
+                'label' => __('Optimized image')
             ]
         ];
         return $options;

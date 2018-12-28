@@ -13,8 +13,9 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 define([
-    "jquery"
-], function ($) {
+    "jquery",
+    'Mageplaza_InstagramFeed/js/lib/shuffle.min'
+], function ($,Shuffle) {
     "use strict";
     $.widget('mageplaza.instagram', {
         options: {
@@ -23,9 +24,11 @@ define([
             count: '',
             sort: '',
             image_resolution: '',
+            lauout: '',
+            show_like_comment: 0
         },
         _create: function () {
-            this._ajaxSubmit()
+            this._ajaxSubmit();
         },
 
         _ajaxSubmit: function () {
@@ -67,17 +70,33 @@ define([
                             default:
                                 Imageurl = data.data[x].images.thumbnail.url;
                         }
-                        $(id).append('<div class="mpinstagramfeed-photo shuffle-item shuffle-item--visible">' +
+                        $(id).append('<div class="mpinstagramfeed-photo">' +
                             '<a class="mpinstagramfeed-post-url" href="'+data.data[x].link+'" target="_blank">' +
-                            '<i class="fa fa-heart">'+data.data[x].likes.count+'</i>' +
-                            '<i class="fa fa-comment">'+data.data[x].comments.count+'</i>' +
+                            '<i class="fa-heart">'+data.data[x].likes.count+'</i>' +
+                            '<i class="fa-comment">'+data.data[x].comments.count+'</i>' +
                             '<img class="mpinstagramfeed-image" src="'+Imageurl+'">' +
                             '</a></div>');
+                    }
+                    if (self.options.show_like_comment == 1) {
+                        $('.mpinstagramfeed-photo i').addClass('fa');
+                    }
+                    // use shuffle after load images
+                    if (self.options.layout == 'optimized') {
+                        self.demo(id);
                     }
                 },
                 error: function (data) {
                     console.log(data);
                 }
+            });
+        },
+
+        demo: function (id) {
+            var element = document.querySelector(id);
+
+            this.shuffle = new Shuffle(element, {
+                itemSelector: '*',
+                useTransforms: true,
             });
         }
     });

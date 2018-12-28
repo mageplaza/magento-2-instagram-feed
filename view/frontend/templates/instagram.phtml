@@ -18,18 +18,10 @@ $block->getAllOptions();
 $id = $block->widgetId;
 $total = $block->getData('total_number');
 $layout = $block->getData('layout');
-switch ($layout) {
-    case \Mageplaza\InstagramFeed\Model\Config\Source\Layout::MULTIPLE:
-        $number_row = $block->getData('number_row');
-        break;
-    case  \Mageplaza\InstagramFeed\Model\Config\Source\Layout::OPTIMIZED:
-        $number_row = 3;
-        break;
-    default:
-        $number_row = 1;
-};
-$number_photo = round($total/$number_row);
-$width = 100/ $number_photo;
+$image = $block->getData('image_resolution');
+$number_row = $block->getNumberRow($layout);
+$width = ($number_row != null) ? (100/round($total/$number_row)) . '%' : $block->getWidthImage($image) . 'px';
+
 ?>
 
 <div class="mpinstagramfeed-container">
@@ -37,19 +29,21 @@ $width = 100/ $number_photo;
         <h3><?php /* @escapeNotVerified */ echo $block->getData('title') ?></h3>
         <div><?php /* @escapeNotVerified */ echo $block->getData('description') ?></div>
     </div>
-    <div id="mpinstagramfeed-photos-<?php echo $id?>"></div>
+    <div id="mpinstagramfeed-photos-<?php echo $id?>" class="row shuffle">
+        <div class="col-1@sm my-sizer-element"></div>
+    </div>
 </div>
 <style type="text/css">
     .mpinstagramfeed-container .mpinstagramfeed-photo {
-        width: calc(<?php echo $width . '%' ?> - 4px);
+        width: calc(<?php echo $width ?> - 4px);
     }
+    i.fa.fa-comment {
+         left: calc(<?php echo $block->getWidthImage($image) . 'px' ?> /2);
+     }
 
-    <?php if ($block->getData('show_like_comment') == 1): ?>
-    .mpinstagramfeed-photo:hover .fa {
-        opacity: 1 !important;
+    i.fa.fa-heart {
+        left: calc(<?php echo $block->getWidthImage($image) . 'px' ?> /3);
     }
-    <?php endif; ?>
-
 </style>
 <script type="text/x-magento-init">
     {
@@ -59,15 +53,10 @@ $width = 100/ $number_photo;
                 "token": "<?php /* @escapeNotVerified */ echo $block->getAccessToken() ?>",
                 "count": "<?php /* @escapeNotVerified */ echo $total ?>",
                 "sort": "<?php /* @escapeNotVerified */ echo $block->getData('sort_by') ?>",
-                "image_resolution": "<?php /* @escapeNotVerified */ echo $block->getData('image_resolution') ?>"
+                "image_resolution": "<?php /* @escapeNotVerified */ echo $image ?>",
+                "layout": "<?php /* @escapeNotVerified */ echo $layout ?>",
+                "show_like_comment": "<?php /* @escapeNotVerified */ echo $block->getData('show_like_comment') ?>"
             }
         }
     }
-</script>
-<script>
-    require(['jquery', 'Mageplaza_InstagramFeed/js/lib/shuffle.min'], function ($,Shuffle) {
-        window.shuffleInstance = new Shuffle(document.querySelector('.mpinstagramfeed-container'), {
-            itemSelector: '.shuffle-item',
-        });
-    });
 </script>

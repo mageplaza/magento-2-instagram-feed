@@ -24,6 +24,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\InstagramFeed\Helper\Data;
 use Mageplaza\InstagramFeed\Model\Config\Source\Design;
+use Mageplaza\InstagramFeed\Model\Config\Source\Image;
 
 class Widget extends Template implements BlockInterface
 {
@@ -52,11 +53,61 @@ class Widget extends Template implements BlockInterface
      *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getAllOptions() {
+    public function getAllOptions()
+    {
         $option = $this->getData('design');
         if ($option == Design::CONFIG) {
             $this->setData(array_merge($this->helperData->getDisplayConfig($this->getStoreId()),$this->getData()));
         }
+
+        return $this;
+    }
+
+    /**
+     * Get width image by image_resolution for optimized layout
+     * @param $type
+     *
+     * @return int
+     */
+    public function getWidthImage($type)
+    {
+        switch ($type) {
+            case Image::THUMBNAIL :
+                $width = 150;
+                break;
+            case Image::LOW :
+                $width = 306;
+                break;
+            case Image::STANDARD :
+                $width = 612;
+                break;
+            default : $width = 150;
+        }
+
+        return $width;
+    }
+
+    /**
+     * @param $layout
+     *
+     * @return int|mixed|null
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getNumberRow($layout)
+    {
+        $options = $this->getAllOptions();
+        switch ($layout) {
+            case \Mageplaza\InstagramFeed\Model\Config\Source\Layout::MULTIPLE:
+                $number_row = !empty($this->getData('number_row')) ? $this->getData('number_row') : 2;
+                break;
+            case  \Mageplaza\InstagramFeed\Model\Config\Source\Layout::OPTIMIZED:
+                $number_row = null;
+                break;
+            default:
+                $number_row = 1;
+        };
+
+        return $number_row;
     }
 
     /**
