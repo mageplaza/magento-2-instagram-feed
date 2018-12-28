@@ -71,7 +71,7 @@
                     <parameter name="design" value="1" />
                 </depends>
             </parameter>
-            <parameter name="Show_popup" xsi:type="select" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+            <parameter name="show_popup" xsi:type="select" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
                 <label translate="true">Show pop-up</label>
                 <description translate="true">Select Yes to show pop-up when click on image.</description>
                 <depends>

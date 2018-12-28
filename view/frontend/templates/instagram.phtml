@@ -21,6 +21,7 @@ $layout = $block->getData('layout');
 $image = $block->getData('image_resolution');
 $number_row = $block->getNumberRow($layout);
 $width = ($number_row != null) ? (100/round($total/$number_row)) . '%' : $block->getWidthImage($image) . 'px';
+$popup = $block->getData('show_popup');
 
 ?>
 
@@ -30,7 +31,13 @@ $width = ($number_row != null) ? (100/round($total/$number_row)) . '%' : $block-
         <div><?php /* @escapeNotVerified */ echo $block->getData('description') ?></div>
     </div>
     <div id="mpinstagramfeed-photos-<?php echo $id?>" class="row shuffle">
-        <div class="col-1@sm my-sizer-element"></div>
+        <div class="show-popup">
+            <div class="overlay"></div>
+            <div class="img-show">
+                <span>X</span>
+                <img src="">
+            </div>
+        </div>
     </div>
 </div>
 <style type="text/css">
@@ -38,12 +45,52 @@ $width = ($number_row != null) ? (100/round($total/$number_row)) . '%' : $block-
         width: calc(<?php echo $width ?> - 4px);
     }
     i.fa.fa-comment {
-         left: calc(<?php echo $block->getWidthImage($image) . 'px' ?> /2);
+         left: calc(<?php echo $block->getWidthImage($image).'px' ?> - <?php echo $block->getWidthImage($image).'px' ?> /1.5);
+
      }
 
     i.fa.fa-heart {
-        left: calc(<?php echo $block->getWidthImage($image) . 'px' ?> /3);
+        left: calc(<?php echo $block->getWidthImage($image).'px' ?> - <?php echo $block->getWidthImage($image).'px' ?> /3);
     }
+
+    .show-popup{
+        z-index: 999;
+        display: none;
+    }
+    .show-popup .overlay{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.66);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .show-popup .img-show{
+        width: 600px;
+        height: 400px;
+        background: #FFF;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        overflow: hidden
+    }
+    .img-show span{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 99;
+        cursor: pointer;
+    }
+    .img-show img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    /*End style*/
+
 </style>
 <script type="text/x-magento-init">
     {
@@ -55,7 +102,8 @@ $width = ($number_row != null) ? (100/round($total/$number_row)) . '%' : $block-
                 "sort": "<?php /* @escapeNotVerified */ echo $block->getData('sort_by') ?>",
                 "image_resolution": "<?php /* @escapeNotVerified */ echo $image ?>",
                 "layout": "<?php /* @escapeNotVerified */ echo $layout ?>",
-                "show_like_comment": "<?php /* @escapeNotVerified */ echo $block->getData('show_like_comment') ?>"
+                "show_like_comment": "<?php /* @escapeNotVerified */ echo $block->getData('show_like_comment') ?>",
+                "show_popup": "<?php /* @escapeNotVerified */ echo $popup ?>"
             }
         }
     }

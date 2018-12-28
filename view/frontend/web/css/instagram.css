@@ -13,6 +13,9 @@
         width: 30%;
     }
 }
+.mpinstagramfeed-container .mpinstagramfeed-photo i {
+    opacity: 0;
+}
 .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
     font-size: 20px;
     text-align: left;
