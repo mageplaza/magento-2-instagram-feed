@@ -16,7 +16,7 @@ define([
     "jquery",
     'Mageplaza_InstagramFeed/js/lib/shuffle.min',
     'mageplaza/core/jquery/popup'
-], function ($,Shuffle,Popup) {
+], function ($,Shuffle) {
     "use strict";
     $.widget('mageplaza.instagram', {
         options: {
@@ -35,7 +35,7 @@ define([
 
         showPopup: function(id) {
             $(id).magnificPopup({
-                delegate: '.mpinstagramfeed-image',
+                delegate: '.mpinstagramfeed-photo a',
                 type: 'image',
                 gallery:{enabled:true},
                 closeOnContentClick: true,
@@ -48,9 +48,6 @@ define([
                 zoom: {
                     enabled: true,
                     duration: 300 // don't foget to change the duration also in CSS
-                },
-                callbacks: {
-                    elementParse: function(item) { item.src = item.el.attr('src'); }
                 }
             });
         },
@@ -134,8 +131,9 @@ define([
             var element = document.querySelector(id);
 
             this.shuffle = new Shuffle(element, {
-                itemSelector: '*',
+                itemSelector: '.mpinstagramfeed-photo',
                 useTransforms: true,
+                buffer: 1,
             });
         }
     });

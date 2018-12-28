@@ -4,15 +4,11 @@
     position: relative;
 }
 @media (max-width: 767px) {
-    .mpinstagramfeed-container .mpinstagramfeed-photo {
-        width: 100%;
+    .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
+        font-size: 10px !important;
     }
 }
-@media (min-width: 767px) and (max-width: 1024px) {
-    .mpinstagramfeed-container .mpinstagramfeed-photo {
-        width: 30%;
-    }
-}
+
 .mpinstagramfeed-container .mpinstagramfeed-photo i {
     opacity: 0;
 }
@@ -22,7 +18,7 @@
     line-height: 18px;
     letter-spacing: normal;
     position: absolute;
-    bottom: 50%;
+    bottom: 10%;
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.3);
     color: #F0F0F0;
@@ -36,4 +32,12 @@
     position: absolute;
     opacity: 0;
     visibility: hidden;
+}
+
+.mpinstagramfeed-container .mpinstagramfeed-photo i.fa.fa-comment {
+left: 31px;
+}
+
+.mpinstagramfeed-container .mpinstagramfeed-photo i.fa.fa-heart {
+    left: 0;
 }
