@@ -48,6 +48,11 @@ class Widget extends Template implements BlockInterface
         parent::__construct($context, $data);
     }
 
+    public function isEnable()
+    {
+       return $this->helperData->isEnabled();
+    }
+
     /**
      * Retrieve all options for Instagram feed
      *

@@ -14,6 +14,7 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
+if ($block->isEnable()) :
 $block->getAllOptions();
 $id = $block->widgetId;
 $total = $block->getData('total_number');
@@ -71,3 +72,4 @@ $popup = $block->getData('show_popup');
         }
     }
 </script>
+<?php endif; ?>
