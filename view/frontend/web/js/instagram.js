@@ -94,20 +94,20 @@ define([
                                 Imageurl = item.images.thumbnail.url;
                         }
                         if (self.options.show_popup == 1) {
-                            $(id).append('<div class="mpinstagramfeed-photo">' +
-                                '<a class="mpinstagramfeed-post-url" href="'+item.images.standard_resolution.url+'" target="_blank">' +
+                            $(id).append('<div class="mpinstagramfeed-photo">' + '<div class="aspect aspect--16x9">' +
+                                '<a class="mpinstagramfeed-post-url aspect__inner" href="'+item.images.standard_resolution.url+'" target="_blank">' +
                                 '<i class="fa-heart">'+item.likes.count+'</i>' +
                                 '<i class="fa-comment">'+item.comments.count+'</i>' +
                                 '<img class="mpinstagramfeed-image" src="'+Imageurl+'">' +
-                                '</a></div>');
+                                '</a></div></div>');
                         }
                         else {
-                            $(id).append('<div class="mpinstagramfeed-photo">' +
-                                '<a class="mpinstagramfeed-post-url" href="'+item.link+'" target="_blank">' +
+                            $(id).append('<div class="mpinstagramfeed-photo">' + '<div class="aspect aspect--16x9">' +
+                                '<a class="mpinstagramfeed-post-url aspect__inner" href="'+item.link+'" target="_blank">' +
                                 '<i class="fa-heart">'+item.likes.count+'</i>' +
                                 '<i class="fa-comment">'+item.comments.count+'</i>' +
                                 '<img class="mpinstagramfeed-image" src="'+Imageurl+'">' +
-                                '</a></div>');
+                                '</a></div></div>');
                         }
                     }
                     if (self.options.show_like_comment == 1) {
