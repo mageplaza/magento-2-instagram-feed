@@ -28,8 +28,8 @@ $popup = $block->getData('show_popup');
 
 <div class="mpinstagramfeed-container">
     <div class="mpinstagramfeed-header">
-        <h3><?php /* @escapeNotVerified */ echo $block->getData('title') ?></h3>
-        <div><?php /* @escapeNotVerified */ echo $block->getData('description') ?></div>
+        <h3><?php /* @escapeNotVerified */ echo __($block->getData('title')) ?></h3>
+        <div><?php /* @escapeNotVerified */ echo __($block->getData('description')) ?></div>
     </div>
     <div id="mpinstagramfeed-photos-<?php echo $id?>" class="row shuffle"></div>
 </div>
