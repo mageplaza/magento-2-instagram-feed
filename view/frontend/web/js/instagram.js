@@ -98,7 +98,7 @@ define([
                                 '<a class="mpinstagramfeed-post-url aspect__inner" href="'+item.images.standard_resolution.url+'" target="_blank">' +
                                 '<i class="fa-heart">'+item.likes.count+'</i>' +
                                 '<i class="fa-comment">'+item.comments.count+'</i>' +
-                                '<img class="mpinstagramfeed-image" src="'+Imageurl+'">' +
+                                '<img class="mpinstagramfeed-image" src="'+Imageurl+'" alt="">' +
                                 '</a></div></div>');
                         }
                         else {
@@ -106,12 +106,13 @@ define([
                                 '<a class="mpinstagramfeed-post-url aspect__inner" href="'+item.link+'" target="_blank">' +
                                 '<i class="fa-heart">'+item.likes.count+'</i>' +
                                 '<i class="fa-comment">'+item.comments.count+'</i>' +
-                                '<img class="mpinstagramfeed-image" src="'+Imageurl+'">' +
+                                '<img class="mpinstagramfeed-image" src="'+Imageurl+'" alt="">' +
                                 '</a></div></div>');
                         }
                     }
                     if (self.options.show_like_comment == 1) {
-                        $('.mpinstagramfeed-photo i').addClass('fa');
+                        var element = id + ' .mpinstagramfeed-photo i';
+                        $(element).addClass('fa');
                     }
                     // use shuffle after load images
                     if (self.options.layout == 'optimized') {
@@ -132,6 +133,7 @@ define([
 
             this.shuffle = new Shuffle(element, {
                 itemSelector: '.mpinstagramfeed-photo',
+                sizer: '.my-sizer-element',
                 useTransforms: true,
                 buffer: 1,
             });

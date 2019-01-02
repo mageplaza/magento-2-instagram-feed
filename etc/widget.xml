@@ -29,7 +29,7 @@
             <parameter name="design" xsi:type="select" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\Design">
                 <label translate="true">Design</label>
             </parameter>
-            <parameter name="total_number" xsi:type="text" visible="true">
+            <parameter name="total_number" xsi:type="text" required="true" visible="true">
                 <label translate="true">Total number of photos</label>
                 <description>The maximum number is 20.</description>
                 <depends>
