@@ -15,6 +15,7 @@
 define([
     "jquery",
     'Mageplaza_InstagramFeed/js/lib/shuffle.min',
+    'Mageplaza_InstagramFeed/js/lib/imagesloaded.pkgd.min',
     'mageplaza/core/jquery/popup'
 ], function ($,Shuffle) {
     "use strict";
@@ -94,22 +95,24 @@ define([
                                 Imageurl = item.images.thumbnail.url;
                         }
                         if (self.options.show_popup == 1) {
-                            $(id).append('<div class="mpinstagramfeed-photo">' + '<div class="aspect aspect--16x9">' +
-                                '<a class="mpinstagramfeed-post-url aspect__inner" href="'+item.images.standard_resolution.url+'" target="_blank">' +
+                            $(id).append('<div class="mpinstagramfeed-photo">' +
+                                '<a class="mpinstagramfeed-post-url " href="'+item.images.standard_resolution.url+'" target="_blank">' +
                                 '<i class="fa-heart">'+item.likes.count+'</i>' +
                                 '<i class="fa-comment">'+item.comments.count+'</i>' +
                                 '<img class="mpinstagramfeed-image" src="'+Imageurl+'" alt="">' +
-                                '</a></div></div>');
+                                '</a></div>');
                         }
                         else {
-                            $(id).append('<div class="mpinstagramfeed-photo">' + '<div class="aspect aspect--16x9">' +
-                                '<a class="mpinstagramfeed-post-url aspect__inner" href="'+item.link+'" target="_blank">' +
+                            $(id).append('<div class="mpinstagramfeed-photo">' +
+                                '<a class="mpinstagramfeed-post-url" href="'+item.link+'" target="_blank">' +
                                 '<i class="fa-heart">'+item.likes.count+'</i>' +
                                 '<i class="fa-comment">'+item.comments.count+'</i>' +
                                 '<img class="mpinstagramfeed-image" src="'+Imageurl+'" alt="">' +
-                                '</a></div></div>');
+                                '</a></div>');
                         }
                     }
+                },
+                complete: function (data) {
                     if (self.options.show_like_comment == 1) {
                         var element = id + ' .mpinstagramfeed-photo i';
                         $(element).addClass('fa');
@@ -130,12 +133,10 @@ define([
 
         demo: function (id) {
             var element = document.querySelector(id);
-
-            this.shuffle = new Shuffle(element, {
-                itemSelector: '.mpinstagramfeed-photo',
-                sizer: '.my-sizer-element',
-                useTransforms: true,
-                buffer: 1,
+            $(element).imagesLoaded().done( function( instance ) {
+                this.shuffle = new Shuffle(element, {
+                    itemSelector: '.mpinstagramfeed-photo'
+                });
             });
         }
     });
