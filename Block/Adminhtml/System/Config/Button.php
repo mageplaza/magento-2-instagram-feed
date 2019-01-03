@@ -31,6 +31,12 @@ class Button extends Field
      */
     protected $_template = 'system/config/button.phtml';
 
+    /**
+     * Button constructor.
+     *
+     * @param Context $context
+     * @param array $data
+     */
     public function __construct(
         Context $context,
         array $data = []

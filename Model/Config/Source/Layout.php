@@ -16,7 +16,10 @@
 
 namespace Mageplaza\InstagramFeed\Model\Config\Source;
 
-
+/**
+ * Class Layout
+ * @package Mageplaza\InstagramFeed\Model\Config\Source
+ */
 class Layout implements \Magento\Framework\Option\ArrayInterface
 {
     const SINGLE = 'single';

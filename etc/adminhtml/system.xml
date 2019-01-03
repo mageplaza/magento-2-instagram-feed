@@ -93,6 +93,7 @@
                 <field id="layout" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Layout</label>
                     <source_model>Mageplaza\InstagramFeed\Model\Config\Source\Layout</source_model>
+                    <comment>Select to arrange instagram images in one single row, two rows or in an organized layout</comment>
                 </field>
                 <field id="number_row" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Number of row</label>

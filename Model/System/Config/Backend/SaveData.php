@@ -16,25 +16,52 @@
 
 namespace Mageplaza\InstagramFeed\Model\System\Config\Backend;
 
-
-use Mageplaza\InstagramFeed\Helper\Data;
-
+use Psr\Log\LoggerInterface;
+use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Store\Model\StoreManagerInterface;
+/**
+ * Class SaveData
+ * @package Mageplaza\InstagramFeed\Model\System\Config\Backend
+ */
 class SaveData
 {
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
     protected $_logger;
+
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
     protected $_storeManager;
+
+    /**
+     * @var \Magento\Framework\App\Config\Storage\WriterInterface
+     */
     protected $_configWriter;
 
+    /**
+     * SaveData constructor.
+     *
+     * @param LoggerInterface $logger
+     * @param WriterInterface $configWriter
+     * @param StoreManagerInterface $storeManager
+     */
     public function __construct(
-        \Psr\Log\LoggerInterface $logger,
-        \Magento\Framework\App\Config\Storage\WriterInterface $configWriter,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        LoggerInterface $logger,
+        WriterInterface $configWriter,
+        StoreManagerInterface $storeManager
     ){
         $this->_logger = $logger;
         $this->_configWriter = $configWriter;
         $this->_storeManager = $storeManager;
     }
 
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
     public function setConfig($value)
     {
         //for all websites

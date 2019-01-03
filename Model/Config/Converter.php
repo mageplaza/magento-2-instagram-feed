@@ -21,7 +21,10 @@
 
 namespace Mageplaza\InstagramFeed\Model\Config;
 
-
+/**
+ * Class Converter
+ * @package Mageplaza\InstagramFeed\Model\Config
+ */
 class Converter extends \Magento\Widget\Model\Config\Converter
 {
     /**

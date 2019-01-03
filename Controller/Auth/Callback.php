@@ -21,6 +21,10 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\RawFactory;
 use Mageplaza\InstagramFeed\Helper\Data;
 
+/**
+ * Class Callback
+ * @package Mageplaza\InstagramFeed\Controller\Auth
+ */
 class Callback extends Action
 {
     /**
@@ -28,8 +32,18 @@ class Callback extends Action
      */
     protected $resultRawFactory;
 
+    /**
+     * @var Data
+     */
     protected $helperData;
 
+    /**
+     * Callback constructor.
+     *
+     * @param Context $context
+     * @param RawFactory $resultRawFactory
+     * @param Data $helperData
+     */
     public function __construct(
         Context $context,
         RawFactory $resultRawFactory,

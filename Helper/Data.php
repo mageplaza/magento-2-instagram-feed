@@ -22,6 +22,10 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData;
 
+/**
+ * Class Data
+ * @package Mageplaza\InstagramFeed\Helper
+ */
 class Data extends AbstractData
 {
     const CONFIG_MODULE_PATH = 'mpinstagramfeed';
@@ -101,8 +105,8 @@ class Data extends AbstractData
     public function getScopeUrl()
     {
         $scope = $this->_request->getParam(ScopeInterface::SCOPE_STORE) ?: $this->storeManager->getStore()->getId();
-
-        if ($website = $this->_request->getParam(ScopeInterface::SCOPE_WEBSITE)) {
+        $website = $this->_request->getParam(ScopeInterface::SCOPE_WEBSITE);
+        if ($website) {
             $scope = $this->storeManager->getWebsite($website)->getDefaultStore()->getId();
         }
 

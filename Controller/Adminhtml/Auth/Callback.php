@@ -23,6 +23,10 @@ use Mageplaza\InstagramFeed\Helper\Data;
 use Psr\Log\LoggerInterface;
 use Mageplaza\InstagramFeed\Model\System\Config\Backend\SaveData;
 
+/**
+ * Class Callback
+ * @package Mageplaza\InstagramFeed\Controller\Adminhtml\Auth
+ */
 class Callback extends Action
 {
     /**
@@ -30,12 +34,30 @@ class Callback extends Action
      */
     protected $resultRawFactory;
 
+    /**
+     * @var Data
+     */
     protected $helperData;
 
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
 
+    /**
+     * @var SaveData
+     */
     protected $config;
 
+    /**
+     * Callback constructor.
+     *
+     * @param Context $context
+     * @param RawFactory $resultRawFactory
+     * @param LoggerInterface $logger
+     * @param Data $helperData
+     * @param SaveData $saveData
+     */
     public function __construct(
         Context $context,
         RawFactory $resultRawFactory,
@@ -53,8 +75,7 @@ class Callback extends Action
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Raw|\Magento\Framework\Controller\ResultInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {

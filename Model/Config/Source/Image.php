@@ -16,7 +16,10 @@
 
 namespace Mageplaza\InstagramFeed\Model\Config\Source;
 
-
+/**
+ * Class Image
+ * @package Mageplaza\InstagramFeed\Model\Config\Source
+ */
 class Image implements \Magento\Framework\Option\ArrayInterface
 {
     const THUMBNAIL = 'thumbnail';

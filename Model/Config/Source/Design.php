@@ -16,7 +16,10 @@
 
 namespace Mageplaza\InstagramFeed\Model\Config\Source;
 
-
+/**
+ * Class Design
+ * @package Mageplaza\InstagramFeed\Model\Config\Source
+ */
 class Design implements \Magento\Framework\Option\ArrayInterface
 {
     const CONFIG = 0;

@@ -15,14 +15,14 @@
  */
 
 if ($block->isEnable()) :
-$block->getAllOptions();
-$id = $block->widgetId;
-$total = $block->getData('total_number');
-$layout = $block->getData('layout');
-$image = $block->getData('image_resolution');
-$number_row = $block->getNumberRow($layout);
+$options = $block->getAllOptions();
+$widgetId = $block->widgetId;
+$total = $options['total_number'];
+$layout = $options['layout'];
+$image = $options['image_resolution'];
+$number_row = $block->getNumberRow();
 $width = ($number_row != null) ? (100/round($total/$number_row)) . '%' : $block->getWidthImage($image) . 'px';
-$popup = $block->getData('show_popup');
+$popup = $options['show_popup'];
 
 ?>
 
@@ -31,42 +31,42 @@ $popup = $block->getData('show_popup');
         <h3><?php /* @escapeNotVerified */ echo __($block->getData('title')) ?></h3>
         <div><?php /* @escapeNotVerified */ echo __($block->getData('description')) ?></div>
     </div>
-    <div id="mpinstagramfeed-photos-<?php echo $id?>" class="row shuffle"></div>
+    <div id="mpinstagramfeed-photos-<?php echo $widgetId?>" class="row shuffle"></div>
 </div>
 <style type="text/css">
-    #mpinstagramfeed-photos-<?php echo $id?> .mpinstagramfeed-photo {
+    #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
         width: calc(<?php echo $width ?> - 4px);
     }
 
     @media (max-width: 767px) {
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $id?> .mpinstagramfeed-photo {
+        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
             width: 100%;
         }
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $id?> .mpinstagramfeed-photo.shuffle-item {
+        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
             width: auto;
         }
 
     }
     @media (min-width: 767px) and (max-width: 1024px) {
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $id?> .mpinstagramfeed-photo {
+        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
             width: 30%;
         }
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $id?> .mpinstagramfeed-photo.shuffle-item {
+        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
             width: auto;
         }
     }
 </style>
 <script type="text/x-magento-init">
     {
-        "#mpinstagramfeed-photos-<?php echo $id?>": {
+        "#mpinstagramfeed-photos-<?php echo $widgetId?>": {
             "mageplaza/instagram": {
-                "id": "<?php /* @escapeNotVerified */ echo $id ?>",
+                "id": "<?php /* @escapeNotVerified */ echo $widgetId ?>",
                 "token": "<?php /* @escapeNotVerified */ echo $block->getAccessToken() ?>",
                 "count": "<?php /* @escapeNotVerified */ echo $total ?>",
-                "sort": "<?php /* @escapeNotVerified */ echo $block->getData('sort_by') ?>",
+                "sort": "<?php /* @escapeNotVerified */ echo $options['sort_by'] ?>",
                 "image_resolution": "<?php /* @escapeNotVerified */ echo $image ?>",
                 "layout": "<?php /* @escapeNotVerified */ echo $layout ?>",
-                "show_like_comment": "<?php /* @escapeNotVerified */ echo $block->getData('show_like_comment') ?>",
+                "show_like_comment": "<?php /* @escapeNotVerified */ echo $options['show_like_comment'] ?>",
                 "show_popup": "<?php /* @escapeNotVerified */ echo $popup ?>"
             }
         }

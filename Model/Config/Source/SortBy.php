@@ -16,7 +16,10 @@
 
 namespace Mageplaza\InstagramFeed\Model\Config\Source;
 
-
+/**
+ * Class SortBy
+ * @package Mageplaza\InstagramFeed\Model\Config\Source
+ */
 class SortBy implements \Magento\Framework\Option\ArrayInterface
 {
     const MOST_RECENT = 'recent';

@@ -21,11 +21,24 @@ use Magento\Config\Block\System\Config\Form\Field as FormField;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Mageplaza\InstagramFeed\Helper\Data;
 
+/**
+ * Class RedirectUrl
+ * @package Mageplaza\InstagramFeed\Block\Adminhtml\System\Config
+ */
 class RedirectUrl extends FormField
 {
-
+    /**
+     * @var Data
+     */
     protected $helperData;
 
+    /**
+     * RedirectUrl constructor.
+     *
+     * @param Context $context
+     * @param Data $helperData
+     * @param array $data
+     */
     public function __construct(
         Context $context,
         Data $helperData,
@@ -44,9 +57,9 @@ class RedirectUrl extends FormField
     protected function _getElementHtml(AbstractElement $element)
     {
         $redirectUrl = $this->helperData->getAuthUrl();
-        $html        = '<input style="opacity:1;" readonly id="' . $element->getHtmlId() . '" class="input-text admin__control-text" value="' . $redirectUrl . '" onclick="this.select()" type="text">';
+        $content     = '<input style="opacity:1;" readonly id="' . $element->getHtmlId() . '" class="input-text admin__control-text" value="' . $redirectUrl . '" onclick="this.select()" type="text">';
 
-        return $html;
+        return $content;
     }
 
 }

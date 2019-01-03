@@ -20,7 +20,12 @@ use Magento\Widget\Block\BlockInterface;
 use Mageplaza\InstagramFeed\Helper\Data;
 use Mageplaza\InstagramFeed\Model\Config\Source\Design;
 use Mageplaza\InstagramFeed\Model\Config\Source\Image;
+use Mageplaza\InstagramFeed\Model\Config\Source\Layout;
 
+/**
+ * Class Widget
+ * @package Mageplaza\InstagramFeed\Block
+ */
 class Widget extends Template implements BlockInterface
 {
     protected $_template = "instagram.phtml";
@@ -32,6 +37,13 @@ class Widget extends Template implements BlockInterface
      */
     protected $helperData;
 
+    /**
+     * Widget constructor.
+     *
+     * @param Template\Context $context
+     * @param Data $helperData
+     * @param array $data
+     */
     public function __construct(
         Template\Context $context,
         Data $helperData,
@@ -43,6 +55,9 @@ class Widget extends Template implements BlockInterface
         parent::__construct($context, $data);
     }
 
+    /**
+     * @return bool
+     */
     public function isEnable()
     {
        return $this->helperData->isEnabled();
@@ -60,7 +75,7 @@ class Widget extends Template implements BlockInterface
             $this->setData(array_merge($this->helperData->getDisplayConfig($this->getStoreId()),$this->getData()));
         }
 
-        return $this;
+        return $this->getData();
     }
 
     /**
@@ -88,19 +103,17 @@ class Widget extends Template implements BlockInterface
     }
 
     /**
-     * @param $layout
-     *
      * @return int|mixed|null
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getNumberRow($layout)
+    public function getNumberRow()
     {
         $options = $this->getAllOptions();
-        switch ($layout) {
-            case \Mageplaza\InstagramFeed\Model\Config\Source\Layout::MULTIPLE:
+        switch ($options["layout"]) {
+            case Layout::MULTIPLE:
                 $number_row = !empty($this->getData('number_row')) ? $this->getData('number_row') : 2;
                 break;
-            case  \Mageplaza\InstagramFeed\Model\Config\Source\Layout::OPTIMIZED:
+            case  Layout::OPTIMIZED:
                 $number_row = null;
                 break;
             default:
@@ -127,8 +140,6 @@ class Widget extends Template implements BlockInterface
      */
     public function getStoreId()
     {
-        $storeId = $this->_storeManager->getStore()->getId();
-
-        return $storeId;
+        return $this->_storeManager->getStore()->getId();
     }
 }

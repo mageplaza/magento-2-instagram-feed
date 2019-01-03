@@ -45,6 +45,7 @@
             </parameter>
             <parameter name="layout" xsi:type="select" required="false" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\Layout">
                 <label translate="true">Layout</label>
+                <description>Select to arrange instagram images in one single row, two rows or in an organized layout</description>
                 <depends>
                     <parameter name="design" value="1" />
                 </depends>
