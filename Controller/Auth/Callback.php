@@ -64,7 +64,7 @@ class Callback extends Action
         if ($this->checkRequest('code')) {
             $this->helperData->code = $this->getRequest()->getParam('code');
 
-            echo __('This is your code: ' .$this->helperData->code);
+            print_r('This is your code: ' .$this->helperData->code);
         }
     }
 
