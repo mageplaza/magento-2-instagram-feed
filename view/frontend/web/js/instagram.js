@@ -17,7 +17,7 @@ define([
     'Mageplaza_InstagramFeed/js/lib/shuffle.min',
     'Mageplaza_InstagramFeed/js/lib/imagesloaded.pkgd.min',
     'mageplaza/core/jquery/popup'
-], function ($,Shuffle) {
+], function($, Shuffle) {
     "use strict";
     $.widget('mageplaza.instagram', {
         options: {
@@ -30,7 +30,7 @@ define([
             show_like_comment: 0,
             show_popup: 0
         },
-        _create: function () {
+        _create: function() {
             this._ajaxSubmit();
         },
 
@@ -38,7 +38,7 @@ define([
             $(id).magnificPopup({
                 delegate: '.mpinstagramfeed-photo a',
                 type: 'image',
-                gallery:{enabled:true},
+                gallery: {enabled: true},
                 closeOnContentClick: true,
                 closeBtnInside: false,
                 fixedContentPos: true,
@@ -53,9 +53,15 @@ define([
             });
         },
 
-        _ajaxSubmit: function () {
-            var self = this;
-            var id = '#mpinstagramfeed-photos-'+ this.options.id;
+        _ajaxSubmit: function() {
+            var self          = this;
+            var id            = '#mpinstagramfeed-photos-' + this.options.id;
+            var photoTemplate = '<div class="mpinstagramfeed-photo">' +
+                '<a class="mpinstagramfeed-post-url " href="{{link}}" target="_blank">' +
+                '<i class="fa-heart">{{like}}</i>' +
+                '<i class="fa-comment">{{comment}}</i>' +
+                '<img class="mpinstagramfeed-image" src="{{imgSrc}}" alt="">' +
+                '</a></div>';
             $.ajax({
                 url: "https://api.instagram.com/v1/users/self/media/recent/",
                 data: {
@@ -64,27 +70,34 @@ define([
                 },
                 dataType: 'json',
                 type: 'GET',
-                success: function (data) {
-                    var x;
+                success: function(data) {
                     var Imageurl;
+                    var itemLink;
                     var items = data.data;
-                    switch(self.options.sort) {
+                    switch (self.options.sort){
                         case 'like':
-                            items.sort(function(a,b){return b.likes.count - a.likes.count});
+                            items.sort(function(a, b) {
+                                return b.likes.count - a.likes.count
+                            });
                             break;
                         case 'comment':
-                            items.sort(function(a,b){return b.comments.count - a.comments.count});
+                            items.sort(function(a, b) {
+                                return b.comments.count - a.comments.count
+                            });
                             break;
                         case 'random':
-                            items.sort(function(){return Math.random() - Math.random()});
+                            items.sort(function() {
+                                return Math.random() - Math.random()
+                            });
                             break;
                         default:
-                            items.sort(function(a,b){return b.created_time - a.created_time });
+                            items.sort(function(a, b) {
+                                return b.created_time - a.created_time
+                            });
                     }
-
-                    for( x in items ){
+                    for (var x in items){
                         var item = data.data[x];
-                        switch(self.options.image_resolution) {
+                        switch (self.options.image_resolution){
                             case 'low':
                                 Imageurl = item.images.low_resolution.url;
                                 break;
@@ -94,46 +107,44 @@ define([
                             default:
                                 Imageurl = item.images.thumbnail.url;
                         }
-                        if (self.options.show_popup == 1) {
-                            $(id).append('<div class="mpinstagramfeed-photo">' +
-                                '<a class="mpinstagramfeed-post-url " href="'+item.images.standard_resolution.url+'" target="_blank">' +
-                                '<i class="fa-heart">'+item.likes.count+'</i>' +
-                                '<i class="fa-comment">'+item.comments.count+'</i>' +
-                                '<img class="mpinstagramfeed-image" src="'+Imageurl+'" alt="">' +
-                                '</a></div>');
+                        if (self.options.show_popup == 1){
+                            itemLink = item.images.standard_resolution.url;
+                        } else {
+                            itemLink = item.link;
                         }
-                        else {
-                            $(id).append('<div class="mpinstagramfeed-photo">' +
-                                '<a class="mpinstagramfeed-post-url" href="'+item.link+'" target="_blank">' +
-                                '<i class="fa-heart">'+item.likes.count+'</i>' +
-                                '<i class="fa-comment">'+item.comments.count+'</i>' +
-                                '<img class="mpinstagramfeed-image" src="'+Imageurl+'" alt="">' +
-                                '</a></div>');
-                        }
+
+                        var photoTemp = photoTemplate
+                        .replace("{{link}}", itemLink)
+                        .replace("{{like}}", item.comments.count)
+                        .replace("{{comment}}", item.likes.count)
+                        .replace("{{imgSrc}}", Imageurl);
+
+                        $(id).append(photoTemp);
                     }
                 },
-                complete: function (data) {
-                    if (self.options.show_like_comment == 1) {
+                complete: function(data) {
+                    if (self.options.show_like_comment == 1){
                         var element = id + ' .mpinstagramfeed-photo i';
                         $(element).addClass('fa');
                     }
                     // use shuffle after load images
-                    if (self.options.layout == 'optimized') {
+                    if (self.options.layout == 'optimized'){
                         self.demo(id);
                     }
-                    if (self.options.show_popup == 1) {
+                    if (self.options.show_popup == 1){
                         self.showPopup(id);
                     }
                 },
-                error: function (data) {
-                    console.log(data);
+                error: function(data) {
+                    //ToDO: handle error
+                    // console.log(data);
                 }
             });
         },
 
-        demo: function (id) {
+        demo: function(id) {
             var element = document.querySelector(id);
-            $(element).imagesLoaded().done( function( instance ) {
+            $(element).imagesLoaded().done(function(instance) {
                 this.shuffle = new Shuffle(element, {
                     itemSelector: '.mpinstagramfeed-photo'
                 });

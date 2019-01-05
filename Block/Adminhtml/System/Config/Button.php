@@ -16,8 +16,8 @@
 
 namespace Mageplaza\InstagramFeed\Block\Adminhtml\System\Config;
 
-use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Backend\Block\Template\Context;
+use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 
 /**
@@ -49,6 +49,7 @@ class Button extends Field
      * Unset scope
      *
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     *
      * @return string
      */
     public function render(AbstractElement $element)
@@ -62,6 +63,7 @@ class Button extends Field
      * Get the button and scripts contents
      *
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     *
      * @return string
      */
     protected function _getElementHtml(AbstractElement $element)

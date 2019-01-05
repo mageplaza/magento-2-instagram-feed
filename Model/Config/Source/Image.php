@@ -23,8 +23,8 @@ namespace Mageplaza\InstagramFeed\Model\Config\Source;
 class Image implements \Magento\Framework\Option\ArrayInterface
 {
     const THUMBNAIL = 'thumbnail';
-    const LOW   = 'low';
-    const STANDARD = 'standard';
+    const LOW       = 'low';
+    const STANDARD  = 'standard';
 
 
     /**
@@ -49,6 +49,7 @@ class Image implements \Magento\Framework\Option\ArrayInterface
                 'label' => __('Standard')
             ]
         ];
+
         return $options;
 
     }

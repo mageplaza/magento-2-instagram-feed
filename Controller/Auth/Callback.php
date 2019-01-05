@@ -51,7 +51,7 @@ class Callback extends Action
     )
     {
         $this->resultRawFactory = $resultRawFactory;
-        $this->helperData = $helperData;
+        $this->helperData       = $helperData;
 
         parent::__construct($context);
     }
@@ -64,13 +64,14 @@ class Callback extends Action
         if ($this->checkRequest('code')) {
             $this->helperData->code = $this->getRequest()->getParam('code');
 
-            print_r('This is your code: ' .$this->helperData->code);
+            print_r('This is your code: ' . $this->helperData->code);
         }
     }
 
     /**
      * @param $key
      * @param null $value
+     *
      * @return bool|mixed
      */
     public function checkRequest($key, $value = null)
@@ -92,13 +93,13 @@ class Callback extends Action
      */
     public function api($code)
     {
-        $param = array(
+        $param = [
             'client_id'     => $this->helperData->getClientId(),
             'client_secret' => $this->helperData->getClientSecret(),
             'grant_type'    => 'authorization_code',
             'redirect_uri'  => $this->helperData->getAuthUrl(),
             'code'          => $code
-        );
+        ];
 
         $url = 'https://api.instagram.com/oauth/access_token';
 

@@ -14,22 +14,20 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
+/** @var Mageplaza\InstagramFeed\Block\Widget $block */
 if ($block->isEnable()) :
-$options = $block->getAllOptions();
-$widgetId = $block->widgetId;
-$total = $options['total_number'];
-$layout = $options['layout'];
-$image = $options['image_resolution'];
-$number_row = $block->getNumberRow();
-$width = ($number_row != null) ? (100/round($total/$number_row)) . '%' : $block->getWidthImage($image) . 'px';
-$popup = $options['show_popup'];
-
+    $widgetId   = uniqid();
+    $options    = $block->getAllOptions();
+    $total      = $options['total_number'];
+    $image      = $options['image_resolution'];
+    $number_row = $block->getNumberRow($options["layout"]);
+    $width      = ($number_row != null) ? (100 / round($total / $number_row)) . '%' : $block->getWidthImage($image) . 'px';
 ?>
 
 <div class="mpinstagramfeed-container">
     <div class="mpinstagramfeed-header">
-        <h3><?php /* @escapeNotVerified */ echo __($block->getData('title')) ?></h3>
-        <div><?php /* @escapeNotVerified */ echo __($block->getData('description')) ?></div>
+        <h3><?php echo __($block->getData('title')) ?></h3>
+        <div><?php echo __($block->getData('description')) ?></div>
     </div>
     <div id="mpinstagramfeed-photos-<?php echo $widgetId?>" class="row shuffle"></div>
 </div>
@@ -58,16 +56,16 @@ $popup = $options['show_popup'];
 </style>
 <script type="text/x-magento-init">
     {
-        "#mpinstagramfeed-photos-<?php echo $widgetId?>": {
+        "#mpinstagramfeed-photos-<?php echo $widgetId ?>": {
             "mageplaza/instagram": {
-                "id": "<?php /* @escapeNotVerified */ echo $widgetId ?>",
-                "token": "<?php /* @escapeNotVerified */ echo $block->getAccessToken() ?>",
-                "count": "<?php /* @escapeNotVerified */ echo $total ?>",
-                "sort": "<?php /* @escapeNotVerified */ echo $options['sort_by'] ?>",
-                "image_resolution": "<?php /* @escapeNotVerified */ echo $image ?>",
-                "layout": "<?php /* @escapeNotVerified */ echo $layout ?>",
-                "show_like_comment": "<?php /* @escapeNotVerified */ echo $options['show_like_comment'] ?>",
-                "show_popup": "<?php /* @escapeNotVerified */ echo $popup ?>"
+                "id": "<?php echo $widgetId ?>",
+                "token": "<?php echo $block->getAccessToken() ?>",
+                "count": "<?php echo $total ?>",
+                "sort": "<?php echo $options['sort_by'] ?>",
+                "image_resolution": "<?php echo $image ?>",
+                "layout": "<?php echo $options['layout'] ?>",
+                "show_like_comment": "<?php echo $options['show_like_comment'] ?>",
+                "show_popup": "<?php echo $options['show_popup'] ?>"
             }
         }
     }

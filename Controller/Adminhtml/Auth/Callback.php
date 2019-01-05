@@ -20,8 +20,8 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\RawFactory;
 use Mageplaza\InstagramFeed\Helper\Data;
-use Psr\Log\LoggerInterface;
 use Mageplaza\InstagramFeed\Model\System\Config\Backend\SaveData;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class Callback
@@ -67,9 +67,9 @@ class Callback extends Action
     )
     {
         $this->resultRawFactory = $resultRawFactory;
-        $this->helperData = $helperData;
-        $this->logger = $logger;
-        $this->config = $saveData;
+        $this->helperData       = $helperData;
+        $this->logger           = $logger;
+        $this->config           = $saveData;
 
         parent::__construct($context);
     }
@@ -81,29 +81,27 @@ class Callback extends Action
     {
         $result = ['status' => false];
         $params = $this->getRequest()->getParams();
-        if ($params && $params['client_id'] && $params['client_secret'] && $params['code']){
+        if ($params && $params['client_id'] && $params['client_secret'] && $params['code']) {
             try {
-                $token = $this->getToken($params['client_id'],$params['client_secret'],$params['code']);
-                if (isset($token['access_token'])){
-                        $this->config->setConfig($token['access_token']);
-                        $result = [
-                            'status'  => true,
-                            'content' => __('Get access_token successfully!')
-                        ];
-                    }
-                if (isset($token['error_message'])){
+                $token = $this->getToken($params['client_id'], $params['client_secret'], $params['code']);
+                if (isset($token['access_token'])) {
+                    $this->config->setConfig($token['access_token']);
+                    $result = [
+                        'status'  => true,
+                        'content' => __('Get access_token successfully!')
+                    ];
+                }
+                if (isset($token['error_message'])) {
                     $result = [
                         'status'  => false,
                         'content' => $token['error_message']
                     ];
                 }
-            }
-            catch (\Exception $e) {
+            } catch (\Exception $e) {
                 $result['content'] = $e->getMessage();
                 $this->logger->critical($e);
             }
-        }
-        else {
+        } else {
             $result['content'] = __('Please fill your client information.');
         }
 
@@ -114,6 +112,7 @@ class Callback extends Action
      * Return javascript to redirect when login success
      *
      * @param null $content
+     *
      * @return \Magento\Framework\Controller\Result\Raw
      */
     public function _appendJs($content = null)
@@ -127,6 +126,7 @@ class Callback extends Action
     /**
      * @param $key
      * @param null $value
+     *
      * @return bool|mixed
      */
     public function checkRequest($key, $value = null)
@@ -141,20 +141,22 @@ class Callback extends Action
     }
 
     /**
+     * @param $id
+     * @param $secret
      * @param $code
      *
      * @return mixed
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function getToken($id,$secret,$code)
+    public function getToken($id, $secret, $code)
     {
-        $param = array(
+        $param = [
             'client_id'     => $id,
             'client_secret' => $secret,
             'grant_type'    => 'authorization_code',
             'redirect_uri'  => $this->helperData->getAuthUrl(),
             'code'          => $code
-        );
+        ];
 
         $url = 'https://api.instagram.com/oauth/access_token';
 
@@ -167,7 +169,7 @@ class Callback extends Action
         $result = curl_exec($ch);
 
         curl_close($ch);
-        $result = json_decode($result,true);
+        $result = json_decode($result, true);
 
         return $result;
     }

@@ -16,14 +16,16 @@
 
 namespace Mageplaza\InstagramFeed\Model\Config\Source;
 
+use Magento\Framework\Option\ArrayInterface;
+
 /**
  * Class Design
  * @package Mageplaza\InstagramFeed\Model\Config\Source
  */
-class Design implements \Magento\Framework\Option\ArrayInterface
+class Design implements ArrayInterface
 {
     const CONFIG = 0;
-    const CUSTOM   = 1;
+    const CUSTOM = 1;
 
     /**
      * to option array
@@ -42,6 +44,7 @@ class Design implements \Magento\Framework\Option\ArrayInterface
                 'label' => __('Custom')
             ]
         ];
+
         return $options;
 
     }

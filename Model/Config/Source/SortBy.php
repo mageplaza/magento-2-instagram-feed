@@ -22,10 +22,10 @@ namespace Mageplaza\InstagramFeed\Model\Config\Source;
  */
 class SortBy implements \Magento\Framework\Option\ArrayInterface
 {
-    const MOST_RECENT = 'recent';
-    const MOST_LIKED   = 'like';
+    const MOST_RECENT    = 'recent';
+    const MOST_LIKED     = 'like';
     const MOST_COMMENTED = 'comment';
-    const RANDOM = 'random';
+    const RANDOM         = 'random';
 
     /**
      * to option array
@@ -52,6 +52,7 @@ class SortBy implements \Magento\Framework\Option\ArrayInterface
                 'label' => __('Random')
             ]
         ];
+
         return $options;
 
     }

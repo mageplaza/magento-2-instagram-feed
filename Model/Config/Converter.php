@@ -31,6 +31,7 @@ class Converter extends \Magento\Widget\Model\Config\Converter
      * Convert dom Depends node to Magento array
      *
      * @param \DOMNode $source
+     *
      * @return array
      * @throws \LogicException
      */
@@ -47,8 +48,8 @@ class Converter extends \Magento\Widget\Model\Config\Converter
                 );
             }
             $parameterAttributes = $childNode->attributes;
-            $dependencyName = $parameterAttributes->getNamedItem('name')->nodeValue;
-            $dependencyValue = $parameterAttributes->getNamedItem('value')->nodeValue;
+            $dependencyName      = $parameterAttributes->getNamedItem('name')->nodeValue;
+            $dependencyValue     = $parameterAttributes->getNamedItem('value')->nodeValue;
 
             if (!isset($depends[$dependencyName])) {
                 $depends[$dependencyName] = [
@@ -56,7 +57,7 @@ class Converter extends \Magento\Widget\Model\Config\Converter
                 ];
 
                 continue;
-            } else if (!isset($depends[$dependencyName]['values'])) {
+            } elseif (!isset($depends[$dependencyName]['values'])) {
                 $depends[$dependencyName]['values'] = [$depends[$dependencyName]['value']];
                 unset($depends[$dependencyName]['value']);
             }

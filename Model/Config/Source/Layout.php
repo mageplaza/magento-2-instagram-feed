@@ -22,8 +22,8 @@ namespace Mageplaza\InstagramFeed\Model\Config\Source;
  */
 class Layout implements \Magento\Framework\Option\ArrayInterface
 {
-    const SINGLE = 'single';
-    const MULTIPLE   = 'multiple';
+    const SINGLE    = 'single';
+    const MULTIPLE  = 'multiple';
     const OPTIMIZED = 'optimized';
 
     /**
@@ -47,6 +47,7 @@ class Layout implements \Magento\Framework\Option\ArrayInterface
                 'label' => __('Optimized image')
             ]
         ];
+
         return $options;
 
     }

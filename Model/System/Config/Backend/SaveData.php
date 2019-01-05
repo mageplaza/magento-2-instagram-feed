@@ -16,19 +16,15 @@
 
 namespace Mageplaza\InstagramFeed\Model\System\Config\Backend;
 
-use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
+
 /**
  * Class SaveData
  * @package Mageplaza\InstagramFeed\Model\System\Config\Backend
  */
 class SaveData
 {
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    protected $_logger;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
@@ -43,16 +39,14 @@ class SaveData
     /**
      * SaveData constructor.
      *
-     * @param LoggerInterface $logger
      * @param WriterInterface $configWriter
      * @param StoreManagerInterface $storeManager
      */
     public function __construct(
-        LoggerInterface $logger,
         WriterInterface $configWriter,
         StoreManagerInterface $storeManager
-    ){
-        $this->_logger = $logger;
+    )
+    {
         $this->_configWriter = $configWriter;
         $this->_storeManager = $storeManager;
     }
@@ -66,8 +60,8 @@ class SaveData
     {
         //for all websites
         $websites = $this->_storeManager->getWebsites();
-        $scope = "websites";
-        foreach($websites as $website) {
+        $scope    = "websites";
+        foreach ($websites as $website) {
             $this->_configWriter->save('mpinstagramfeed/general/access_token', $value, $scope, $website->getId());
         }
 

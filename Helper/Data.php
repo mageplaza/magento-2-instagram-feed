@@ -56,7 +56,7 @@ class Data extends AbstractData
      */
     public function getClientId($storeId = null)
     {
-        return $this->getConfigGeneral('client_id',$storeId);
+        return $this->getConfigGeneral('client_id', $storeId);
     }
 
     /**
@@ -66,7 +66,7 @@ class Data extends AbstractData
      */
     public function getClientSecret($storeId = null)
     {
-        return $this->getConfigGeneral('client_secret',$storeId);
+        return $this->getConfigGeneral('client_secret', $storeId);
     }
 
     /**
@@ -76,7 +76,7 @@ class Data extends AbstractData
      */
     public function getAccessToken($storeId = null)
     {
-        return $this->getConfigGeneral('access_token',$storeId);
+        return $this->getConfigGeneral('access_token', $storeId);
     }
 
     /**
@@ -104,7 +104,7 @@ class Data extends AbstractData
      */
     public function getScopeUrl()
     {
-        $scope = $this->_request->getParam(ScopeInterface::SCOPE_STORE) ?: $this->storeManager->getStore()->getId();
+        $scope   = $this->_request->getParam(ScopeInterface::SCOPE_STORE) ?: $this->storeManager->getStore()->getId();
         $website = $this->_request->getParam(ScopeInterface::SCOPE_WEBSITE);
         if ($website) {
             $scope = $this->storeManager->getWebsite($website)->getDefaultStore()->getId();
@@ -120,6 +120,6 @@ class Data extends AbstractData
      */
     public function getDisplayConfig($storeId = null)
     {
-        return $this->getModuleConfig('display',$storeId);
+        return $this->getModuleConfig('display', $storeId);
     }
 }

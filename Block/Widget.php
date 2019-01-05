@@ -30,8 +30,6 @@ class Widget extends Template implements BlockInterface
 {
     protected $_template = "instagram.phtml";
 
-    public $widgetId;
-
     /**
      * @var Data
      */
@@ -51,7 +49,6 @@ class Widget extends Template implements BlockInterface
     )
     {
         $this->helperData = $helperData;
-        $this->widgetId = uniqid();
         parent::__construct($context, $data);
     }
 
@@ -60,19 +57,19 @@ class Widget extends Template implements BlockInterface
      */
     public function isEnable()
     {
-       return $this->helperData->isEnabled();
+        return $this->helperData->isEnabled();
     }
 
     /**
      * Retrieve all options for Instagram feed
      *
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @return mixed
      */
     public function getAllOptions()
     {
         $option = $this->getData('design');
         if ($option == Design::CONFIG) {
-            $this->setData(array_merge($this->helperData->getDisplayConfig($this->getStoreId()),$this->getData()));
+            $this->setData(array_merge($this->helperData->getDisplayConfig($this->getStoreId()), $this->getData()));
         }
 
         return $this->getData();
@@ -80,6 +77,7 @@ class Widget extends Template implements BlockInterface
 
     /**
      * Get width image by image_resolution for optimized layout
+     *
      * @param $type
      *
      * @return int
@@ -96,28 +94,29 @@ class Widget extends Template implements BlockInterface
             case Image::STANDARD :
                 $width = 612;
                 break;
-            default : $width = 150;
+            default :
+                $width = 150;
         }
 
         return $width;
     }
 
     /**
+     * @param string $layoutOpt
+     *
      * @return int|mixed|null
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getNumberRow()
+    public function getNumberRow($layoutOpt)
     {
-        $options = $this->getAllOptions();
-        switch ($options["layout"]) {
+        switch ($layoutOpt) {
             case Layout::MULTIPLE:
                 $number_row = !empty($this->getData('number_row')) ? $this->getData('number_row') : 2;
                 break;
-            case  Layout::OPTIMIZED:
-                $number_row = null;
+            case  Layout::SINGLE:
+                $number_row = 1;
                 break;
             default:
-                $number_row = 1;
+                $number_row = null;
         };
 
         return $number_row;
@@ -125,18 +124,16 @@ class Widget extends Template implements BlockInterface
 
     /**
      * @return mixed
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getAccessToken()
     {
-        $token = $this->helperData->getConfigGeneral('access_token',$this->getStoreId());
+        $token = $this->helperData->getConfigGeneral('access_token', $this->getStoreId());
 
         return $token;
     }
 
     /**
      * @return int
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getStoreId()
     {
