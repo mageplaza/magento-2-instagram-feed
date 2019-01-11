@@ -14,19 +14,19 @@
  */
 define([
     "jquery",
-    'Mageplaza_InstagramFeed/js/lib/shuffle.min',
-    'Mageplaza_InstagramFeed/js/lib/imagesloaded.pkgd.min',
-    'mageplaza/core/jquery/popup'
-], function($, Shuffle) {
+    "Mageplaza_InstagramFeed/js/lib/shuffle.min",
+    "Mageplaza_InstagramFeed/js/lib/imagesloaded.pkgd.min",
+    "mageplaza/core/jquery/popup"
+], function ($,Shuffle) {
     "use strict";
-    $.widget('mageplaza.instagram', {
+    $.widget("mageplaza.instagram", {
         options: {
-            id: '',
-            token: '',
-            count: '',
-            sort: '',
-            image_resolution: '',
-            lauout: '',
+            id: "",
+            token: "",
+            count: "",
+            sort: "",
+            image_resolution: "",
+            layout: "",
             show_like_comment: 0,
             show_popup: 0
         },
@@ -36,27 +36,27 @@ define([
 
         showPopup: function(id) {
             $(id).magnificPopup({
-                delegate: '.mpinstagramfeed-photo a',
-                type: 'image',
+                delegate: ".mpinstagramfeed-photo a",
+                type: "image",
                 gallery: {enabled: true},
                 closeOnContentClick: true,
                 closeBtnInside: false,
                 fixedContentPos: true,
-                mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+                mainClass: "mfp-no-margins mfp-with-zoom", // class to remove default margin from left and right side
                 image: {
                     verticalFit: true
                 },
                 zoom: {
                     enabled: true,
-                    duration: 300 // don't foget to change the duration also in CSS
+                    duration: 300 // don't forget to change the duration also in CSS
                 }
             });
         },
 
         _ajaxSubmit: function() {
             var self          = this;
-            var id            = '#mpinstagramfeed-photos-' + this.options.id;
-            var photoTemplate = '<div class="mpinstagramfeed-photo">' +
+            var id            = "#mpinstagramfeed-photos-" + this.options.id;
+            var photo_Template = '<div class="mpinstagramfeed-photo">' +
                 '<a class="mpinstagramfeed-post-url " href="{{link}}" target="_blank">' +
                 '<i class="fa-heart">{{like}}</i>' +
                 '<i class="fa-comment">{{comment}}</i>' +
@@ -68,24 +68,24 @@ define([
                     access_token: this.options.token,
                     count: this.options.count
                 },
-                dataType: 'json',
-                type: 'GET',
+                dataType: "json",
+                type: "GET",
                 success: function(data) {
-                    var Imageurl;
-                    var itemLink;
+                    var Image_url;
+                    var item_Link;
                     var items = data.data;
                     switch (self.options.sort){
-                        case 'like':
+                        case "like":
                             items.sort(function(a, b) {
                                 return b.likes.count - a.likes.count
                             });
                             break;
-                        case 'comment':
+                        case "comment":
                             items.sort(function(a, b) {
                                 return b.comments.count - a.comments.count
                             });
                             break;
-                        case 'random':
+                        case "random":
                             items.sort(function() {
                                 return Math.random() - Math.random()
                             });
@@ -98,40 +98,40 @@ define([
                     for (var x in items){
                         var item = data.data[x];
                         switch (self.options.image_resolution){
-                            case 'low':
-                                Imageurl = item.images.low_resolution.url;
+                            case "low":
+                                Image_url = item.images.low_resolution.url;
                                 break;
-                            case 'standard':
-                                Imageurl = item.images.standard_resolution.url;
+                            case "standard":
+                                Image_url = item.images.standard_resolution.url;
                                 break;
                             default:
-                                Imageurl = item.images.thumbnail.url;
+                                Image_url = item.images.thumbnail.url;
                         }
-                        if (self.options.show_popup == 1){
-                            itemLink = item.images.standard_resolution.url;
+                        if (self.options.show_popup === "1"){
+                            item_Link = item.images.standard_resolution.url;
                         } else {
-                            itemLink = item.link;
+                            item_Link = item.link;
                         }
 
-                        var photoTemp = photoTemplate
-                        .replace("{{link}}", itemLink)
+                        var photo_Temp = photo_Template
+                        .replace("{{link}}", item_Link)
                         .replace("{{like}}", item.comments.count)
                         .replace("{{comment}}", item.likes.count)
-                        .replace("{{imgSrc}}", Imageurl);
+                        .replace("{{imgSrc}}", Image_url);
 
-                        $(id).append(photoTemp);
+                        $(id).append(photo_Temp);
                     }
                 },
                 complete: function(data) {
-                    if (self.options.show_like_comment == 1){
+                    if (self.options.show_like_comment === "1"){
                         var element = id + ' .mpinstagramfeed-photo i';
                         $(element).addClass('fa');
                     }
                     // use shuffle after load images
-                    if (self.options.layout == 'optimized'){
+                    if (self.options.layout === "optimized"){
                         self.demo(id);
                     }
-                    if (self.options.show_popup == 1){
+                    if (self.options.show_popup === "1"){
                         self.showPopup(id);
                     }
                 },

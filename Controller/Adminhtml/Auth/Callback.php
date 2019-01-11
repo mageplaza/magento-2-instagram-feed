@@ -19,6 +19,7 @@ namespace Mageplaza\InstagramFeed\Controller\Adminhtml\Auth;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\RawFactory;
+use Magento\Framework\HTTP\Adapter\CurlFactory;
 use Mageplaza\InstagramFeed\Helper\Data;
 use Mageplaza\InstagramFeed\Model\System\Config\Backend\SaveData;
 use Psr\Log\LoggerInterface;
@@ -50,12 +51,18 @@ class Callback extends Action
     protected $config;
 
     /**
+     * @var CurlFactory
+     */
+    protected $curlFactory;
+
+    /**
      * Callback constructor.
      *
      * @param Context $context
      * @param RawFactory $resultRawFactory
      * @param LoggerInterface $logger
      * @param Data $helperData
+     * @param CurlFactory $curlFactory
      * @param SaveData $saveData
      */
     public function __construct(
@@ -63,6 +70,7 @@ class Callback extends Action
         RawFactory $resultRawFactory,
         LoggerInterface $logger,
         Data $helperData,
+        CurlFactory $curlFactory,
         SaveData $saveData
     )
     {
@@ -70,6 +78,7 @@ class Callback extends Action
         $this->helperData       = $helperData;
         $this->logger           = $logger;
         $this->config           = $saveData;
+        $this->curlFactory      = $curlFactory;
 
         parent::__construct($context);
     }
@@ -109,21 +118,6 @@ class Callback extends Action
     }
 
     /**
-     * Return javascript to redirect when login success
-     *
-     * @param null $content
-     *
-     * @return \Magento\Framework\Controller\Result\Raw
-     */
-    public function _appendJs($content = null)
-    {
-        /** @var \Magento\Framework\Controller\Result\Raw $resultRaw */
-        $resultRaw = $this->resultRawFactory->create();
-
-        return $resultRaw->setContents($content);
-    }
-
-    /**
      * @param $key
      * @param null $value
      *
@@ -145,12 +139,13 @@ class Callback extends Action
      * @param $secret
      * @param $code
      *
-     * @return mixed
+     * @return array|mixed
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getToken($id, $secret, $code)
     {
-        $param = [
+        $result = [];
+        $params = [
             'client_id'     => $id,
             'client_secret' => $secret,
             'grant_type'    => 'authorization_code',
@@ -160,16 +155,20 @@ class Callback extends Action
 
         $url = 'https://api.instagram.com/oauth/access_token';
 
-        $ch = curl_init($url);
+        $curl = $this->curlFactory->create();
+        $curl->write(\Zend_Http_Client::POST, $url, '1.1', [], http_build_query($params, null, '&'));
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, count($param));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        try {
+            $resultCurl = $curl->read();
+            if (!empty($resultCurl)) {
+                $responseBody = \Zend_Http_Response::extractBody($resultCurl);
+                $result += Data::jsonDecode($responseBody);
+            }
+        } catch (\Exception $e) {
+            $result['message'] = $e->getMessage();
+        }
 
-        $result = curl_exec($ch);
-
-        curl_close($ch);
-        $result = json_decode($result, true);
+        $curl->close();
 
         return $result;
     }

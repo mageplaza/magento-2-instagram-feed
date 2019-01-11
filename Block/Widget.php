@@ -64,6 +64,7 @@ class Widget extends Template implements BlockInterface
      * Retrieve all options for Instagram feed
      *
      * @return mixed
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getAllOptions()
     {
@@ -124,6 +125,7 @@ class Widget extends Template implements BlockInterface
 
     /**
      * @return mixed
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getAccessToken()
     {
@@ -134,6 +136,7 @@ class Widget extends Template implements BlockInterface
 
     /**
      * @return int
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getStoreId()
     {

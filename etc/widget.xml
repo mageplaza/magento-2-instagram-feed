@@ -15,7 +15,7 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 -->
-<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:helloworld:Magento_Widget:etc/widget.xsd">
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
     <widget class="Mageplaza\InstagramFeed\Block\Widget" id="mpinstagramfeed_widget">
         <label>Mageplaza Instagram Feed</label>
         <description>Create Instagram Feed to website.</description>

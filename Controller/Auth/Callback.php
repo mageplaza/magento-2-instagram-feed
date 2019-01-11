@@ -84,36 +84,4 @@ class Callback extends Action
 
         return $param;
     }
-
-    /**
-     * @param $code
-     *
-     * @return mixed
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function api($code)
-    {
-        $param = [
-            'client_id'     => $this->helperData->getClientId(),
-            'client_secret' => $this->helperData->getClientSecret(),
-            'grant_type'    => 'authorization_code',
-            'redirect_uri'  => $this->helperData->getAuthUrl(),
-            'code'          => $code
-        ];
-
-        $url = 'https://api.instagram.com/oauth/access_token';
-
-        $ch = curl_init($url);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, count($param));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
-
-        $result = curl_exec($ch);
-
-        curl_close($ch);
-        $result = json_decode($result);
-
-        return $result;
-    }
 }

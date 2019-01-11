@@ -22,7 +22,7 @@ use Magento\Framework\Data\Form\Element\AbstractElement;
 
 /**
  * Class Button
- * @package Magento\Paypal\Block\Adminhtml\System\Config
+ * @package Mageplaza\InstagramFeed\Block\Adminhtml\System\Config
  */
 class Button extends Field
 {
