@@ -20,8 +20,8 @@ if ($block->isEnable()) :
     $options    = $block->getAllOptions();
     $total      = $options['total_number'];
     $image      = $options['image_resolution'];
-    $number_row = $block->getNumberRow($options["layout"]);
-    $width      = ($number_row != null) ? (100 / round($total / $number_row)) . '%' : $block->getWidthImage($image) . 'px';
+    $width      = $block->getNumberRow($options["layout"]) != null ? $block->calcWidth() . '%' : $block->calcWidth() . 'px';
+    $sizeIcon   = ($block->calcWidth() < 6) ? '10px' : '20px';
 ?>
 
 <div class="mpinstagramfeed-container">
@@ -34,6 +34,9 @@ if ($block->isEnable()) :
 <style type="text/css">
     #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
         width: calc(<?php echo $width ?> - 4px);
+    }
+    .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
+        font-size: <?php echo $sizeIcon ?>;
     }
 
     @media (max-width: 767px) {
