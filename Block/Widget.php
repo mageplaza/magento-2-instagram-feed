@@ -1,18 +1,24 @@
 <?php
 /**
  * Mageplaza
+ *
  * NOTICE OF LICENSE
+ *
  * This source file is subject to the Mageplaza.com license that is
  * available through the world-wide-web at this URL:
  * https://www.mageplaza.com/LICENSE.txt
+ *
  * DISCLAIMER
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ *
  * @category    Mageplaza
  * @package     Mageplaza_InstagramFeed
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
+
 namespace Mageplaza\InstagramFeed\Block;
 
 use Magento\Framework\View\Element\Template;
@@ -28,6 +34,9 @@ use Mageplaza\InstagramFeed\Model\Config\Source\Layout;
  */
 class Widget extends Template implements BlockInterface
 {
+    /**
+     * @var string
+     */
     protected $_template = "instagram.phtml";
 
     /**
@@ -46,9 +55,9 @@ class Widget extends Template implements BlockInterface
         Template\Context $context,
         Data $helperData,
         array $data = []
-    )
-    {
+    ) {
         $this->helperData = $helperData;
+
         parent::__construct($context, $data);
     }
 
@@ -86,16 +95,16 @@ class Widget extends Template implements BlockInterface
     public function getWidthImage($type)
     {
         switch ($type) {
-            case Image::THUMBNAIL :
+            case Image::THUMBNAIL:
                 $width = 150;
                 break;
-            case Image::LOW :
+            case Image::LOW:
                 $width = 306;
                 break;
-            case Image::STANDARD :
+            case Image::STANDARD:
                 $width = 612;
                 break;
-            default :
+            default:
                 $width = 150;
         }
 
@@ -113,7 +122,7 @@ class Widget extends Template implements BlockInterface
             case Layout::MULTIPLE:
                 $number_row = !empty($this->getData('number_row')) ? $this->getData('number_row') : 2;
                 break;
-            case  Layout::SINGLE:
+            case Layout::SINGLE:
                 $number_row = 1;
                 break;
             default:
@@ -124,22 +133,18 @@ class Widget extends Template implements BlockInterface
     }
 
     /**
-     * @param $total
-     * @param $row
-     *
      * @return float|int
      */
     public function calcWidth()
     {
-        $type       = $this->getData('layout');
-        $total      = $this->getData('total_number');
+        $type = $this->getData('layout');
+        $total = $this->getData('total_number');
         $number_row = $this->getNumberRow($type);
         if ($number_row != null) {
             return (100 / round($total / $number_row));
         }
-        else {
-            return $this->getWidthImage($type);
-        }
+
+        return $this->getWidthImage($type);
     }
 
     /**

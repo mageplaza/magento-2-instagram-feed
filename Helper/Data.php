@@ -1,13 +1,18 @@
 <?php
 /**
  * Mageplaza
+ *
  * NOTICE OF LICENSE
+ *
  * This source file is subject to the Mageplaza.com license that is
  * available through the world-wide-web at this URL:
  * https://www.mageplaza.com/LICENSE.txt
+ *
  * DISCLAIMER
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ *
  * @category    Mageplaza
  * @package     Mageplaza_InstagramFeed
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
@@ -28,26 +33,10 @@ use Mageplaza\Core\Helper\AbstractData;
  */
 class Data extends AbstractData
 {
-    const CONFIG_MODULE_PATH = 'mpinstagramfeed';
-
-    public $code = '';
-    public $token = '';
-
     /**
-     * Data constructor.
-     *
-     * @param Context $context
-     * @param ObjectManagerInterface $objectManager
-     * @param StoreManagerInterface $storeManager
+     * @type string
      */
-    public function __construct(
-        Context $context,
-        ObjectManagerInterface $objectManager,
-        StoreManagerInterface $storeManager
-    )
-    {
-        parent::__construct($context, $objectManager, $storeManager);
-    }
+    const CONFIG_MODULE_PATH = 'mpinstagramfeed';
 
     /**
      * @param null $storeId
@@ -104,7 +93,7 @@ class Data extends AbstractData
      */
     public function getScopeUrl()
     {
-        $scope   = $this->_request->getParam(ScopeInterface::SCOPE_STORE) ?: $this->storeManager->getStore()->getId();
+        $scope = $this->_request->getParam(ScopeInterface::SCOPE_STORE) ?: $this->storeManager->getStore()->getId();
         $website = $this->_request->getParam(ScopeInterface::SCOPE_WEBSITE);
         if ($website) {
             $scope = $this->storeManager->getWebsite($website)->getDefaultStore()->getId();

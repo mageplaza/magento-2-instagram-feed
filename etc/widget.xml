@@ -2,13 +2,18 @@
 <!--
 /**
  * Mageplaza
+ *
  * NOTICE OF LICENSE
+ *
  * This source file is subject to the Mageplaza.com license that is
  * available through the world-wide-web at this URL:
  * https://www.mageplaza.com/LICENSE.txt
+ *
  * DISCLAIMER
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ *
  * @category    Mageplaza
  * @package     Mageplaza_InstagramFeed
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
@@ -17,8 +22,8 @@
 -->
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
     <widget class="Mageplaza\InstagramFeed\Block\Widget" id="mpinstagramfeed_widget">
-        <label>Mageplaza Instagram Feed</label>
-        <description>Create Instagram Feed to website.</description>
+        <label translate="true">Mageplaza Instagram Feed</label>
+        <description translate="true">Create Instagram Feed to website.</description>
         <parameters>
             <parameter name="title" xsi:type="text" visible="true">
                 <label translate="true">Title</label>
@@ -31,52 +36,52 @@
             </parameter>
             <parameter name="total_number" xsi:type="text" required="true" visible="true">
                 <label translate="true">Total number of photos</label>
-                <description>The maximum number is 20.</description>
+                <description translate="true">The maximum number is 20.</description>
                 <depends>
-                    <parameter name="design" value="1" />
+                    <parameter name="design" value="1"/>
                 </depends>
                 <value>12</value>
             </parameter>
             <parameter name="sort_by" xsi:type="select" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\SortBy">
                 <label translate="true">Sort by</label>
                 <depends>
-                    <parameter name="design" value="1" />
+                    <parameter name="design" value="1"/>
                 </depends>
             </parameter>
             <parameter name="layout" xsi:type="select" required="false" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\Layout">
                 <label translate="true">Layout</label>
-                <description>Select to arrange instagram images in one single row, two rows or in an organized layout</description>
+                <description translate="true">Select to arrange instagram images in one single row, two rows or in an organized layout</description>
                 <depends>
-                    <parameter name="design" value="1" />
+                    <parameter name="design" value="1"/>
                 </depends>
             </parameter>
             <parameter name="number_row" xsi:type="text" required="false" visible="true">
                 <label translate="true">Number of row</label>
-                <description>This value only applies to desktop and images will be automatically responsive depending on the device</description>
+                <description translate="true">This value only applies to desktop and images will be automatically responsive depending on the device</description>
                 <depends>
-                    <parameter name="design" value="1" />
-                    <parameter name="layout" value="multiple" />
+                    <parameter name="design" value="1"/>
+                    <parameter name="layout" value="multiple"/>
                 </depends>
                 <value>2</value>
             </parameter>
             <parameter name="image_resolution" xsi:type="select" required="false" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\Image">
                 <label translate="true">Image resolutions</label>
                 <depends>
-                    <parameter name="design" value="1" />
+                    <parameter name="design" value="1"/>
                 </depends>
             </parameter>
             <parameter name="show_like_comment" xsi:type="select" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
                 <label translate="true">Show number of Likes/ Comments</label>
                 <description translate="true">Select Yes to show number of Like/Comment when hover image.</description>
                 <depends>
-                    <parameter name="design" value="1" />
+                    <parameter name="design" value="1"/>
                 </depends>
             </parameter>
             <parameter name="show_popup" xsi:type="select" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
                 <label translate="true">Show pop-up</label>
                 <description translate="true">Select Yes to show pop-up when click on image.</description>
                 <depends>
-                    <parameter name="design" value="1" />
+                    <parameter name="design" value="1"/>
                 </depends>
             </parameter>
         </parameters>

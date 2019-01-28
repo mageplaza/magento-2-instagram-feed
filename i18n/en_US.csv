@@ -1,0 +1,44 @@
+"Get access_token successfully!","Get access_token successfully!"
+"Please fill your client information.","Please fill your client information."
+"Use Config","Use Config"
+Custom,Custom
+Thumbnail,Thumbnail
+Low,Low
+Standard,Standard
+"Single Row","Single Row"
+"Multiple Rows","Multiple Rows"
+"Optimized image","Optimized image"
+"Most recent","Most recent"
+"Most liked","Most liked"
+"Most commented","Most commented"
+Random,Random
+Success,Success
+Error,Error
+"Instagram Feed","Instagram Feed"
+General,General
+Enable,Enable
+"Select Yes to enable this module","Select Yes to enable this module"
+"Client ID","Client ID"
+"Create app <a href=""http://instagram.com/developer/clients/manage/"" target=""_bank"">here.</a> Please refer at this <a href=""https://docs.mageplaza.com/social-login-m2/how-to-configure-instagram-api.html"" target=""_bank"">link.</a> to create Client ID","Create app <a href=""http://instagram.com/developer/clients/manage/"" target=""_bank"">here.</a> Please refer at this <a href=""https://docs.mageplaza.com/social-login-m2/how-to-configure-instagram-api.html"" target=""_bank"">link.</a> to create Client ID"
+"Client Secret","Client Secret"
+"Redirect URI","Redirect URI"
+Code,Code
+"Refer to this <a href=""https://www.instagram.com/developer/authentication/"" target=""_blank"">link</a> to get the code","Refer to this <a href=""https://www.instagram.com/developer/authentication/"" target=""_blank"">link</a> to get the code"
+Display,Display
+"Total number of photos","Total number of photos"
+"The maximum number is 20.","The maximum number is 20."
+"Sort by","Sort by"
+Layout,Layout
+"Select to arrange instagram images in one single row, two rows or in an organized layout","Select to arrange instagram images in one single row, two rows or in an organized layout"
+"Number of row","Number of row"
+"This value only applies to desktop and images will be automatically responsive depending on the device","This value only applies to desktop and images will be automatically responsive depending on the device"
+"Image resolutions","Image resolutions"
+"Show number of Likes/ Comments","Show number of Likes/ Comments"
+"Select Yes to show number of Like/Comment when hover image.","Select Yes to show number of Like/Comment when hover image."
+"Show pop-up","Show pop-up"
+"Select Yes to show pop-up when click on image.","Select Yes to show pop-up when click on image."
+"Mageplaza Instagram Feed","Mageplaza Instagram Feed"
+"Create Instagram Feed to website.","Create Instagram Feed to website."
+Title,Title
+Description,Description
+Design,Design

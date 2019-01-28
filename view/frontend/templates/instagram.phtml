@@ -1,13 +1,18 @@
 <?php
 /**
  * Mageplaza
+ *
  * NOTICE OF LICENSE
+ *
  * This source file is subject to the Mageplaza.com license that is
  * available through the world-wide-web at this URL:
  * https://www.mageplaza.com/LICENSE.txt
+ *
  * DISCLAIMER
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ *
  * @category    Mageplaza
  * @package     Mageplaza_InstagramFeed
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
@@ -16,48 +21,52 @@
 
 /** @var Mageplaza\InstagramFeed\Block\Widget $block */
 if ($block->isEnable()) :
-    $widgetId   = uniqid();
-    $options    = $block->getAllOptions();
-    $total      = $options['total_number'];
-    $image      = $options['image_resolution'];
-    $width      = $block->getNumberRow($options["layout"]) != null ? $block->calcWidth() . '%' : $block->calcWidth() . 'px';
-    $sizeIcon   = ($block->calcWidth() < 6) ? '10px' : '20px';
-?>
+    $widgetId = uniqid();
+    $options = $block->getAllOptions();
+    $total = $options['total_number'];
+    $image = $options['image_resolution'];
+    $width = $block->getNumberRow($options["layout"]) != null ? $block->calcWidth() . '%' : $block->calcWidth() . 'px';
+    $sizeIcon = ($block->calcWidth() < 6) ? '10px' : '20px';
+    ?>
 
-<div class="mpinstagramfeed-container">
-    <div class="mpinstagramfeed-header">
-        <h3><?php echo __($block->getData('title')) ?></h3>
-        <div><?php echo __($block->getData('description')) ?></div>
+    <div class="mpinstagramfeed-container">
+        <div class="mpinstagramfeed-header">
+            <h3><?php echo __($block->getData('title')) ?></h3>
+            <div><?php echo __($block->getData('description')) ?></div>
+        </div>
+        <div id="mpinstagramfeed-photos-<?php echo $widgetId ?>" class="row shuffle"></div>
     </div>
-    <div id="mpinstagramfeed-photos-<?php echo $widgetId?>" class="row shuffle"></div>
-</div>
-<style type="text/css">
-    #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
-        width: calc(<?php echo $width ?> - 4px);
-    }
-    .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
-        font-size: <?php echo $sizeIcon ?>;
-    }
-
-    @media (max-width: 767px) {
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
-            width: 100%;
-        }
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
-            width: auto;
+    <style type="text/css">
+        #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
+            width: calc(<?php echo $width ?> -4px);
         }
 
-    }
-    @media (min-width: 767px) and (max-width: 1024px) {
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
-            width: 30%;
+        .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
+            font-size: <?php echo $sizeIcon ?>;
         }
-        .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
-            width: auto;
+
+        @media (max-width: 767px) {
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
+                width: 100%;
+            }
+
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
+                width: auto;
+            }
+
         }
-    }
-</style>
-<script type="text/x-magento-init">
+
+        @media (min-width: 767px) and (max-width: 1024px) {
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
+                width: 30%;
+            }
+
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
+                width: auto;
+            }
+        }
+    </style>
+    <script type="text/x-magento-init">
     {
         "#mpinstagramfeed-photos-<?php echo $widgetId ?>": {
             "mageplaza/instagram": {
@@ -72,5 +81,5 @@ if ($block->isEnable()) :
             }
         }
     }
-</script>
+    </script>
 <?php endif; ?>

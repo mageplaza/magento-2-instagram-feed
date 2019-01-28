@@ -1,13 +1,18 @@
 <?php
 /**
  * Mageplaza
+ *
  * NOTICE OF LICENSE
+ *
  * This source file is subject to the Mageplaza.com license that is
  * available through the world-wide-web at this URL:
  * https://www.mageplaza.com/LICENSE.txt
+ *
  * DISCLAIMER
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ *
  * @category    Mageplaza
  * @package     Mageplaza_InstagramFeed
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
@@ -72,13 +77,12 @@ class Callback extends Action
         Data $helperData,
         CurlFactory $curlFactory,
         SaveData $saveData
-    )
-    {
+    ) {
         $this->resultRawFactory = $resultRawFactory;
-        $this->helperData       = $helperData;
-        $this->logger           = $logger;
-        $this->config           = $saveData;
-        $this->curlFactory      = $curlFactory;
+        $this->helperData = $helperData;
+        $this->logger = $logger;
+        $this->config = $saveData;
+        $this->curlFactory = $curlFactory;
 
         parent::__construct($context);
     }

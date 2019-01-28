@@ -1,12 +1,17 @@
 /**
  * Mageplaza
+ *
  * NOTICE OF LICENSE
+ *
  * This source file is subject to the Mageplaza.com license that is
  * available through the world-wide-web at this URL:
  * https://www.mageplaza.com/LICENSE.txt
+ *
  * DISCLAIMER
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ *
  * @category    Mageplaza
  * @package     Mageplaza_InstagramFeed
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
@@ -17,7 +22,7 @@ define([
     "Magento_Ui/js/modal/alert",
     "mage/translate",
     "jquery/ui"
-], function($, alert, $t) {
+], function ($, alert, $t) {
     "use strict";
 
     $.widget('mageplaza.auth', {
@@ -29,18 +34,18 @@ define([
             redirect_uri: '#mpinstagramfeed_general_redirect_url',
             code: '#mpinstagramfeed_general_code'
         },
-        _create: function() {
+        _create: function () {
             this.initObserve();
         },
 
-        initObserve: function() {
+        initObserve: function () {
             var self = this;
-            $(this.options.btn_token).click(function(e) {
+            $(this.options.btn_token).click(function (e) {
                 e.preventDefault();
                 self._ajaxSubmit();
             });
         },
-        _ajaxSubmit: function() {
+        _ajaxSubmit: function () {
             $.ajax({
                 url: this.options.ajaxUrl,
                 data: {
@@ -52,13 +57,13 @@ define([
                 dataType: 'json',
                 type: 'GET',
                 showLoader: true,
-                success: function(result) {
+                success: function (result) {
                     alert({
                         title: result.status ? $t('Success') : $t('Error'),
                         content: result.content
                     });
                 },
-                error: function(data) {
+                error: function (data) {
                     console.log(data);
                 }
             });
@@ -67,3 +72,4 @@ define([
 
     return $.mageplaza.auth;
 });
+
