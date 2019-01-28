@@ -13,7 +13,7 @@
 
 **Q: I got error: Mageplaza_Core has been already defined**
 
-A: Read solution: https://github.com/mageplaza/module-core/issues/3
+A: Read solution [here](https://github.com/mageplaza/module-core/issues/3)
 
 **Q: On which page of my website can Instagram Feed is displayed?**
 
@@ -116,7 +116,7 @@ Set the limitation for the number of displayed images
 Be well responsive with both desktop and mobile devices.
 
 
-## 6. Full Features Lists
+## 6. Full Featurea List
 
 ### For store admins
 
