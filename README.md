@@ -116,7 +116,7 @@ Set the limitation for the number of displayed images
 Be well responsive with both desktop and mobile devices.
 
 
-## 6. Full Featurea List
+## 6. Full Features List
 
 ### For store admins
 
