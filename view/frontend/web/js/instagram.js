@@ -120,8 +120,8 @@ define([
 
                         var photo_Temp = photo_Template
                             .replace("{{link}}", item_Link)
-                            .replace("{{like}}", item.comments.count)
-                            .replace("{{comment}}", item.likes.count)
+                            .replace("{{comment}}", item.comments.count)
+                            .replace("{{like}}", item.likes.count)
                             .replace("{{imgSrc}}", Image_url);
 
                         $(id).append(photo_Temp);
