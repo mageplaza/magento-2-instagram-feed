@@ -1,10 +1,10 @@
 # Magento 2 Instagram Feed Extension
-[Instagram Feed by Mageplaza](http://www.mageplaza.com/magento-2-instagram-feed/) is a supportive module which allows integrating Instagram images to Magento 2 website. This trendy extension enables you to place eye-catching Instagram images block to any page of your site, which can effectively draw customers' attention and bring a modern well-updated look to online stores.
+[Magento 2 Instagram Feed by Mageplaza](http://www.mageplaza.com/magento-2-instagram-feed/) is a supportive module which allows integrating Instagram images to Magento 2 website. This trendy extension enables you to place eye-catching Instagram images block to any page of your site, which can effectively draw customers' attention and bring a modern well-updated look to online stores.
 
-## 1. Documentation
+## 1. Instagram Feed Widget Documentation
+- [Introduction page](http://www.mageplaza.com/magento-2-instagram-feed/)
 - [Installation guide](https://www.mageplaza.com/install-magento-2-extension/)
 - [User guide](https://docs.mageplaza.com/instagram-feed/index.html)
-- [Introduction page](http://www.mageplaza.com/magento-2-instagram-feed/)
 - [Contribute on Github](https://github.com/mageplaza/magento-2-instagram-feed)
 - [Get Support](https://github.com/mageplaza/magento-2-instagram-feed/issues)
 
@@ -55,13 +55,13 @@ php bin/magento setup:static-content:deploy
 
 ### Display Instagram Images anywhere on site 
 
-Instagram Feed by Mageplaza support store admin in updating trendy eye-catching Instagram images on any specific pages on your store site.
+**Instagram Feed Widget by Mageplaza **support store admin in updating trendy eye-catching Instagram images on any specific pages on your store site.
 
-Admins can easily create Instagram Widget then embed Instagram block on the homepage, product listing page, product page or any CMS pages, based on their specific purposes. 
+Admins can easily create Instagram Widget then **embed Instagram block on the homepage**, **product listing page**, **product page** or any **CMS pages**, based on their specific purposes. 
 
 This flexibility allows store owners to easily place the high-quality and good-looking Instagram Images to any locations on their beloved store site. Attractive images appearing on an appropriate position will probably appeal customers and accordingly contribute to your conversion rate. 
 
-![Imgur](https://i.imgur.com/SMuVbVs.png)
+![Magento 2 Instagram Feed Widget](https://i.imgur.com/SMuVbVs.png)
 
 ### Sorting image function 
 One of the most noticeable functions of Instagram Feed is that the store owner can quickly sort the photos from Instagram photo library, based on specific criteria, which are:
@@ -73,7 +73,7 @@ One of the most noticeable functions of Instagram Feed is that the store owner c
 
 As a result, the appropriate images can easily be sorted out then displayed quickly on the store site. 
 
-![Imgur](https://i.imgur.com/NQp8NtK.png)
+![Sorting Instagram image function](https://i.imgur.com/NQp8NtK.png)
 
 ### Various available photo layouts
 
@@ -83,7 +83,7 @@ Instagram images can be flexibly featured, thanks to the various options of layo
 - Multiple Rows: The images will be displayed in multiple rows. This choice is appropriate when the available space is wide, and the store owner wants to impress the visual communication on their site.
 - Optimized Image: This layout has high displaying flexibility for all image sizes. Its displaying possibility mostly suits with Instagram images in different sizes.
 
-![Imgur](https://i.imgur.com/JMD1pjY.png)
+![Various available photo layouts](https://i.imgur.com/JMD1pjY.png)
 
 ### Show the number of Likes and Comments
 
@@ -91,15 +91,15 @@ To effectively convince customers, Instagram Feed enable displaying the number o
 
 The customers tend to feel more interested in the images which can gain more social visibility and concern. Showing numbers of likes and comments is a good way to present your Instagram Photos' social interaction and make the store site become more interactive than ever.
 
-![Imgur](https://i.imgur.com/AspYo33.png)
+![Show the number of Likes and Comments](https://i.imgur.com/AspYo33.png)
 
 ### Instagram Popup 
 
-Popup can also be enabled, with Instagram Feed module, to feature the more beautiful look of your store site. It can be done easily and quickly only after a one-click setting from the backend.
+Popup can also be enabled, with **Magento 2 Instagram Feed module**, to feature the more beautiful look of your store site. It can be done easily and quickly only after a one-click setting from the backend.
 
 On the storefront, customers can take a more detailed look to any Instagram image after they click on, the image will appear bigger on the displaying popup after. It makes stores look professional and is possible to considerably enhance customer experience.
 
-![Imgur](https://i.imgur.com/z6di7ws.png)
+![Instagram Popup](https://i.imgur.com/z6di7ws.png)
 
 ## 5. More features
 
@@ -116,7 +116,7 @@ Set the limitation for the number of displayed images
 Be well responsive with both desktop and mobile devices.
 
 
-## 6. Full Features List
+## 6. Full Magento 2 Instagram Feed Features
 
 ### For store admins
 
@@ -143,16 +143,16 @@ Be well responsive with both desktop and mobile devices.
 
 
 
-## 7. User guide
+## 7. Instagram Feed User guide
 From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EXTENSIONS > Instagram Feed`
 
-![Imgur](https://i.imgur.com/uAJv4ma.png)
+![Instagram Feed User guide](https://i.imgur.com/uAJv4ma.png)
 
-### Configuration 
+### Instagram Widget Configuration 
 #### 1.1 General 
 
 
-![Imgur](https://i.imgur.com/f85J6r8.png)
+![Instagram Widget Configuration](https://i.imgur.com/f85J6r8.png)
 
 - **Enable**: Select `Yes` to enable the function of Instagram Feed
 - **Client ID**: Insert the Instagram ID that you want to display pictures on feed
@@ -164,7 +164,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
 
 #### 1.2 Display
 
-![Imgur](https://i.imgur.com/caojC1a.png)
+![Instagram Widget Display Configuration](https://i.imgur.com/caojC1a.png)
 
 - **Total number of photos**
   - Insert the number of pictures that will be presented on feed
@@ -172,7 +172,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
   
 - **Sort by**
 
-![Imgur](https://i.imgur.com/QULZOEr.png)
+![Instagram Widget Configuration](https://i.imgur.com/QULZOEr.png)
 
   - *Sort by = Most recent*: Show from latest to oldest
   - *Sort by = Most liked*: Show from most liked to least liked
@@ -183,7 +183,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
 
 - **Layout**
 
-![Imgur](https://i.imgur.com/epLTBuo.png)
+![Instagram feed Layout Configuration](https://i.imgur.com/epLTBuo.png)
 
 - *Layout = Single Row*: Display pictures on a single row
 - *Layout = Multiple Rows*: Display pictures on more than one rows
@@ -195,7 +195,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
 
 - **Image resolutions**
 
-![Imgur](https://i.imgur.com/Z0EVKY5.png)
+![Instagram feed Image resolutions Configuration](https://i.imgur.com/Z0EVKY5.png)
 
   - *Image resolutions = Standard*: Display images with the standard resolution quality
   - *Image resolutions = Low*: Display images limited resolution quality
@@ -206,7 +206,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
 - **Show pop-up**: Select `Yes` to show a popup when clicking on the image.
 
 
-### 2. Widget
+### 2. Instagram Widget
 
 #### How to add Widget in Instagram Feed?
 
@@ -223,7 +223,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
    - Select your current theme that you are using in the **Design Theme** section.
    - Click on the **Continue** button.
 
-![Imgur](https://i.imgur.com/nfIuJSY.png)
+![Magento 2 Instagram Widget](https://i.imgur.com/nfIuJSY.png)
 
 ##### Step 2: Configure the Storefront Properties section
 
@@ -232,13 +232,13 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
   - Assign the block on any store view you want to apply the block, by selecting in the **Assign to Store View field**
   - Set a value for the **Sort Order** option, if many blocks are placed at the same container. The lower **Sort Order** value, the higher is the position on Instagram block. For instance, the block will be at the top if the provided value is zero.
 
-![Imgur](https://i.imgur.com/TGMPExO.png)
+![Instagram Widget Configure the Storefront Properties section](https://i.imgur.com/TGMPExO.png)
 
 - In **Layout Updates** section, you can click **Add Layout Update** to set the layout.
   - In the **Display on** field, select the [category](https://www.mageplaza.com/kb/how-to-create-a-new-category-in-magento-2.html), [product](https://www.mageplaza.com/kb/how-create-simple-product-magento-2.html), or [page](https://www.mageplaza.com/kb/how-to-add-a-new-cms-page-magento-2.html) where the block will be shown. 
   - If you would like to set the block to a specific page, you need to choose Page you want the block to display and set **Container** as the specific position of the page that the block appears.
 
-![Imgur](https://i.imgur.com/Gsgk9SD.png)
+![Instagram Widget Configure](https://i.imgur.com/Gsgk9SD.png)
 
 ##### Step 3: Configure Widget Options to display images of the Instagram Feed
 
@@ -246,7 +246,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
 - **Description**: Insert the description for images to show on frontend
 - **Design** 
 
-![Imgur](https://i.imgur.com/oTjNkpx.png)
+![Configure Widget Options to display images of the Instagram Feed](https://i.imgur.com/oTjNkpx.png)
 
   - *Design = Use Config*: Use design in Instagram Feed configuration section  
   - *Design = Custom*: Admin configure image displaying right on the frontend 
@@ -255,7 +255,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
   - The maximum number of images is 20
 - **Sort by**
 
-![Imgur](https://i.imgur.com/DSDJ3pl.png)
+![Configure Widget Options to display images of the Instagram Feed](https://i.imgur.com/DSDJ3pl.png)
 
   - *Sort by = Most recent*: Show from latest to oldest
   - *Sort by = Most liked*: Show from most liked to least liked
@@ -265,7 +265,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
 
 - **Layout**
 
-![Imgur](https://i.imgur.com/hxYR2w7.png)
+![Magento 2 Instagram Configure Layout)
 
   - *Layout = Single Row*: Display pictures on a single row
   - *Layout = Multiple Rows*: Display pictures on more than one rows
@@ -276,7 +276,7 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
   
 - **Image resolutions**
 
-![Imgur](https://i.imgur.com/sT4rbL4.png)
+![Magento 2 Instagram Image resolutions](https://i.imgur.com/sT4rbL4.png)
 
   - *Image resolutions = Standard*: Display images with the standard resolution quality
   - *Image resolutions = Low*: Display images limited resolution quality
@@ -287,4 +287,23 @@ From the **Admin Panel**, go to `Store > Settings > Configuration > MAGEPLAZA EX
 
 
 
+**People also search:**
+- instagram feed magento 2
+- magento 2 instagram integration
+- instagram magento 2
+- magento 2 instagram extension
+- magento 2 instagram feed extension free
+- mageplaza instagram feed
+- magento 2 instagram widget
+- instagram magento 2 extension
+- magento 2 instagram shop
 
+**Other free extension on Github**
+- [Magento 2 seo suite](https://github.com/mageplaza/magento-2-seo)
+- [Magento2 google map](https://github.com/mageplaza/magento-2-google-maps)
+- [Magento 2 delete order](https://github.com/mageplaza/magento-2-delete-orders)
+- [Magento 2 gdpr compliance free](https://github.com/mageplaza/magento-2-gdpr)
+- [Magento 2 login as customers](https://github.com/mageplaza/magento-2-login-as-customer)
+- [Magento 2 same order number](https://github.com/mageplaza/magento-2-same-order-number)
+- [Magento 2 layered navigation module](https://github.com/mageplaza/magento-2-ajax-layered-navigation)
+- [Magento 2 security module](https://github.com/mageplaza/magento-2-security) 
