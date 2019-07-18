@@ -28,56 +28,49 @@ if ($block->isEnable()) :
     $width = $block->getNumberRow($options["layout"]) != null ? $block->calcWidth() . '%' : $block->calcWidth() . 'px';
     $sizeIcon = ($block->calcWidth() < 6) ? '10px' : '20px';
     ?>
-
     <div class="mpinstagramfeed-container">
         <div class="mpinstagramfeed-header">
-            <h3><?php echo __($block->getData('title')) ?></h3>
-            <div><?php echo __($block->getData('description')) ?></div>
+            <h3><?= /** @noEscape */ __($block->getData('title')) ?></h3>
+            <div><?= /** @noEscape */ __($block->getData('description')) ?></div>
         </div>
-        <div id="mpinstagramfeed-photos-<?php echo $widgetId ?>" class="row shuffle"></div>
+        <div id="mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?>" class="row shuffle"></div>
     </div>
     <style type="text/css">
-        #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
-            width: calc(<?php echo $width ?> -4px);
+        #mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId?> .mpinstagramfeed-photo {
+            width: calc(<?= /** @noEscape */ $width ?> - 4px);
         }
-
         .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
-            font-size: <?php echo $sizeIcon ?>;
+            font-size: <?= /** @noEscape */ $sizeIcon ?>;
         }
-
         @media (max-width: 767px) {
-            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?> .mpinstagramfeed-photo {
                 width: 100%;
             }
-
-            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?> .mpinstagramfeed-photo.shuffle-item {
                 width: auto;
             }
-
         }
-
         @media (min-width: 767px) and (max-width: 1024px) {
-            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo {
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?> .mpinstagramfeed-photo {
                 width: 30%;
             }
-
-            .mpinstagramfeed-container #mpinstagramfeed-photos-<?php echo $widgetId?> .mpinstagramfeed-photo.shuffle-item {
+            .mpinstagramfeed-container #mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?> .mpinstagramfeed-photo.shuffle-item {
                 width: auto;
             }
         }
     </style>
     <script type="text/x-magento-init">
     {
-        "#mpinstagramfeed-photos-<?php echo $widgetId ?>": {
+        "#mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?>": {
             "mageplaza/instagram": {
-                "id": "<?php echo $widgetId ?>",
-                "token": "<?php echo $block->getAccessToken() ?>",
-                "count": "<?php echo $total ?>",
-                "sort": "<?php echo $options['sort_by'] ?>",
-                "image_resolution": "<?php echo $image ?>",
-                "layout": "<?php echo $options['layout'] ?>",
-                "show_like_comment": "<?php echo $options['show_like_comment'] ?>",
-                "show_popup": "<?php echo $options['show_popup'] ?>"
+                "id": "<?= /** @noEscape */ $widgetId ?>",
+                "token": "<?= /** @noEscape */ $block->getAccessToken() ?>",
+                "count": "<?= /** @noEscape */ $total ?>",
+                "sort": "<?= /** @noEscape */ $options['sort_by'] ?>",
+                "image_resolution": "<?= /** @noEscape */ $image ?>",
+                "layout": "<?= /** @noEscape */ $options['layout'] ?>",
+                "show_like_comment": "<?= /** @noEscape */ $options['show_like_comment'] ?>",
+                "show_popup": "<?= /** @noEscape */ $options['show_popup'] ?>"
             }
         }
     }
