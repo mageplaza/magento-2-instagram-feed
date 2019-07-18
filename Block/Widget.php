@@ -21,6 +21,7 @@
 
 namespace Mageplaza\InstagramFeed\Block;
 
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\InstagramFeed\Helper\Data;
@@ -37,7 +38,7 @@ class Widget extends Template implements BlockInterface
     /**
      * @var string
      */
-    protected $_template = "instagram.phtml";
+    protected $_template = 'Mageplaza_InstagramFeed::instagram.phtml';
 
     /**
      * @var Data
@@ -73,7 +74,7 @@ class Widget extends Template implements BlockInterface
      * Retrieve all options for Instagram feed
      *
      * @return mixed
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function getAllOptions()
     {
@@ -127,7 +128,7 @@ class Widget extends Template implements BlockInterface
                 break;
             default:
                 $number_row = null;
-        };
+        }
 
         return $number_row;
     }
@@ -149,7 +150,7 @@ class Widget extends Template implements BlockInterface
 
     /**
      * @return mixed
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function getAccessToken()
     {
@@ -160,7 +161,7 @@ class Widget extends Template implements BlockInterface
 
     /**
      * @return int
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function getStoreId()
     {

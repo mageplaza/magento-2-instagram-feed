@@ -24,6 +24,7 @@ namespace Mageplaza\InstagramFeed\Block\Adminhtml\System\Config;
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field as FormField;
 use Magento\Framework\Data\Form\Element\AbstractElement;
+use Magento\Framework\Exception\LocalizedException;
 use Mageplaza\InstagramFeed\Helper\Data;
 
 /**
@@ -58,13 +59,16 @@ class RedirectUrl extends FormField
      * @param AbstractElement $element
      *
      * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     protected function _getElementHtml(AbstractElement $element)
     {
         $redirectUrl = $this->helperData->getAuthUrl();
-        $content = '<input style="opacity:1;" readonly id="' . $element->getHtmlId() . '" class="input-text admin__control-text" value="' . $redirectUrl . '" onclick="this.select()" type="text">';
 
-        return $content;
+        return '<input style="opacity:1;" readonly type="text"
+                        id="' . $element->getHtmlId() . '" 
+                        class="input-text admin__control-text" 
+                        value="' . $redirectUrl . '" 
+                        onclick="this.select()">';
     }
 }

@@ -21,10 +21,9 @@
 
 namespace Mageplaza\InstagramFeed\Helper;
 
-use Magento\Framework\App\Helper\Context;
-use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\ScopeInterface;
-use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\Store;
 use Mageplaza\Core\Helper\AbstractData;
 
 /**
@@ -70,12 +69,12 @@ class Data extends AbstractData
 
     /**
      * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function getAuthUrl()
     {
         $storeId = $this->getScopeUrl();
-        /** @var \Magento\Store\Model\Store $store */
+        /** @var Store $store */
         $store = $this->storeManager->getStore($storeId);
 
         $authUrl = $this->_getUrl('mpinstagramfeed/auth/callback', [
@@ -89,7 +88,7 @@ class Data extends AbstractData
 
     /**
      * @return int
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function getScopeUrl()
     {

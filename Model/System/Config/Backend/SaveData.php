@@ -31,12 +31,12 @@ use Magento\Store\Model\StoreManagerInterface;
 class SaveData
 {
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     protected $_storeManager;
 
     /**
-     * @var \Magento\Framework\App\Config\Storage\WriterInterface
+     * @var WriterInterface
      */
     protected $_configWriter;
 
@@ -63,7 +63,7 @@ class SaveData
     {
         //for all websites
         $websites = $this->_storeManager->getWebsites();
-        $scope = "websites";
+        $scope = 'websites';
         foreach ($websites as $website) {
             $this->_configWriter->save('mpinstagramfeed/general/access_token', $value, $scope, $website->getId());
         }

@@ -23,7 +23,9 @@ namespace Mageplaza\InstagramFeed\Controller\Auth;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\RawFactory;
+use Magento\Framework\Controller\ResultInterface;
 use Mageplaza\InstagramFeed\Helper\Data;
 
 /**
@@ -33,7 +35,7 @@ use Mageplaza\InstagramFeed\Helper\Data;
 class Callback extends Action
 {
     /**
-     * @var \Magento\Framework\Controller\Result\RawFactory
+     * @var RawFactory
      */
     protected $resultRawFactory;
 
@@ -61,7 +63,7 @@ class Callback extends Action
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
+     * @return ResponseInterface|ResultInterface|void
      */
     public function execute()
     {

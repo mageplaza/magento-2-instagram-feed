@@ -21,13 +21,19 @@
 
 namespace Mageplaza\InstagramFeed\Controller\Adminhtml\Auth;
 
+use Exception;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\RawFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\HTTP\Adapter\CurlFactory;
 use Mageplaza\InstagramFeed\Helper\Data;
 use Mageplaza\InstagramFeed\Model\System\Config\Backend\SaveData;
 use Psr\Log\LoggerInterface;
+use Zend_Http_Client;
+use Zend_Http_Response;
 
 /**
  * Class Callback
@@ -36,7 +42,7 @@ use Psr\Log\LoggerInterface;
 class Callback extends Action
 {
     /**
-     * @var \Magento\Framework\Controller\Result\RawFactory
+     * @var RawFactory
      */
     protected $resultRawFactory;
 
@@ -88,7 +94,7 @@ class Callback extends Action
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     * @return ResponseInterface|ResultInterface
      */
     public function execute()
     {
@@ -110,7 +116,7 @@ class Callback extends Action
                         'content' => $token['error_message']
                     ];
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $result['content'] = $e->getMessage();
                 $this->logger->critical($e);
             }
@@ -144,7 +150,7 @@ class Callback extends Action
      * @param $code
      *
      * @return array|mixed
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function getToken($id, $secret, $code)
     {
@@ -160,15 +166,15 @@ class Callback extends Action
         $url = 'https://api.instagram.com/oauth/access_token';
 
         $curl = $this->curlFactory->create();
-        $curl->write(\Zend_Http_Client::POST, $url, '1.1', [], http_build_query($params, null, '&'));
+        $curl->write(Zend_Http_Client::POST, $url, '1.1', [], http_build_query($params, null, '&'));
 
         try {
             $resultCurl = $curl->read();
             if (!empty($resultCurl)) {
-                $responseBody = \Zend_Http_Response::extractBody($resultCurl);
+                $responseBody = Zend_Http_Response::extractBody($resultCurl);
                 $result += Data::jsonDecode($responseBody);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $result['message'] = $e->getMessage();
         }
 

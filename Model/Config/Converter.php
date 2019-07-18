@@ -21,6 +21,9 @@
 
 namespace Mageplaza\InstagramFeed\Model\Config;
 
+use DOMNode;
+use LogicException;
+
 /**
  * Class Converter
  * @package Mageplaza\InstagramFeed\Model\Config
@@ -30,10 +33,10 @@ class Converter extends \Magento\Widget\Model\Config\Converter
     /**
      * Convert dom Depends node to Magento array
      *
-     * @param \DOMNode $source
+     * @param DOMNode $source
      *
      * @return array
-     * @throws \LogicException
+     * @throws LogicException
      */
     protected function _convertDepends($source)
     {
@@ -43,7 +46,7 @@ class Converter extends \Magento\Widget\Model\Config\Converter
                 continue;
             }
             if ($childNode->nodeName !== 'parameter') {
-                throw new \LogicException(
+                throw new LogicException(
                     sprintf("Only 'parameter' node can be child of 'depends' node, %s found", $childNode->nodeName)
                 );
             }
@@ -57,7 +60,8 @@ class Converter extends \Magento\Widget\Model\Config\Converter
                 ];
 
                 continue;
-            } else if (!isset($depends[$dependencyName]['values'])) {
+            }
+            if (!isset($depends[$dependencyName]['values'])) {
                 $depends[$dependencyName]['values'] = [$depends[$dependencyName]['value']];
                 unset($depends[$dependencyName]['value']);
             }
