@@ -26,7 +26,6 @@ use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\InstagramFeed\Helper\Data;
 use Mageplaza\InstagramFeed\Model\Config\Source\Design;
-use Mageplaza\InstagramFeed\Model\Config\Source\Image;
 use Mageplaza\InstagramFeed\Model\Config\Source\Layout;
 
 /**
@@ -78,38 +77,12 @@ class Widget extends Template implements BlockInterface
      */
     public function getAllOptions()
     {
-        $option = $this->getData('design');
-        if ($option == Design::CONFIG) {
+        $option = (int) $this->getData('design');
+        if ($option === Design::CONFIG) {
             $this->setData(array_merge($this->helperData->getDisplayConfig($this->getStoreId()), $this->getData()));
         }
 
         return $this->getData();
-    }
-
-    /**
-     * Get width image by image_resolution for optimized layout
-     *
-     * @param $type
-     *
-     * @return int
-     */
-    public function getWidthImage($type)
-    {
-        switch ($type) {
-            case Image::THUMBNAIL:
-                $width = 150;
-                break;
-            case Image::LOW:
-                $width = 306;
-                break;
-            case Image::STANDARD:
-                $width = 612;
-                break;
-            default:
-                $width = 150;
-        }
-
-        return $width;
     }
 
     /**
@@ -138,25 +111,22 @@ class Widget extends Template implements BlockInterface
      */
     public function calcWidth()
     {
-        $type = $this->getData('layout');
-        $total = $this->getData('total_number');
+        $type       = $this->getData('layout');
+        $total      = $this->getData('total_number');
         $number_row = $this->getNumberRow($type);
-        if ($number_row != null) {
+        if (!empty($number_row)) {
             return (100 / round($total / $number_row));
         }
 
-        return $this->getWidthImage($type);
+        return 300;
     }
 
     /**
      * @return mixed
-     * @throws NoSuchEntityException
      */
     public function getAccessToken()
     {
-        $token = $this->helperData->getConfigGeneral('access_token', $this->getStoreId());
-
-        return $token;
+        return $this->helperData->getConfigGeneral('access_token');
     }
 
     /**

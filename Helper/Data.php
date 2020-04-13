@@ -21,9 +21,6 @@
 
 namespace Mageplaza\InstagramFeed\Helper;
 
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Store\Model\ScopeInterface;
-use Magento\Store\Model\Store;
 use Mageplaza\Core\Helper\AbstractData;
 
 /**
@@ -42,63 +39,9 @@ class Data extends AbstractData
      *
      * @return mixed
      */
-    public function getClientId($storeId = null)
-    {
-        return $this->getConfigGeneral('client_id', $storeId);
-    }
-
-    /**
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getClientSecret($storeId = null)
-    {
-        return $this->getConfigGeneral('client_secret', $storeId);
-    }
-
-    /**
-     * @param null $storeId
-     *
-     * @return mixed
-     */
     public function getAccessToken($storeId = null)
     {
         return $this->getConfigGeneral('access_token', $storeId);
-    }
-
-    /**
-     * @return string
-     * @throws LocalizedException
-     */
-    public function getAuthUrl()
-    {
-        $storeId = $this->getScopeUrl();
-        /** @var Store $store */
-        $store = $this->storeManager->getStore($storeId);
-
-        $authUrl = $this->_getUrl('mpinstagramfeed/auth/callback', [
-            '_nosid'  => true,
-            '_scope'  => $storeId,
-            '_secure' => $store->isUrlSecure()
-        ]);
-
-        return $authUrl;
-    }
-
-    /**
-     * @return int
-     * @throws LocalizedException
-     */
-    public function getScopeUrl()
-    {
-        $scope = $this->_request->getParam(ScopeInterface::SCOPE_STORE) ?: $this->storeManager->getStore()->getId();
-        $website = $this->_request->getParam(ScopeInterface::SCOPE_WEBSITE);
-        if ($website) {
-            $scope = $this->storeManager->getWebsite($website)->getDefaultStore()->getId();
-        }
-
-        return $scope;
     }
 
     /**

@@ -42,12 +42,6 @@
                 </depends>
                 <value>12</value>
             </parameter>
-            <parameter name="sort_by" xsi:type="select" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\SortBy">
-                <label>Sort by</label>
-                <depends>
-                    <parameter name="design" value="1"/>
-                </depends>
-            </parameter>
             <parameter name="layout" xsi:type="select" required="false" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\Layout">
                 <label>Layout</label>
                 <description>Select to arrange instagram images in one single row, two rows or in an organized layout</description>
@@ -64,13 +58,7 @@
                 </depends>
                 <value>2</value>
             </parameter>
-            <parameter name="image_resolution" xsi:type="select" required="false" visible="true" source_model="Mageplaza\InstagramFeed\Model\Config\Source\Image">
-                <label>Image resolutions</label>
-                <depends>
-                    <parameter name="design" value="1"/>
-                </depends>
-            </parameter>
-            <parameter name="show_like_comment" xsi:type="select" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+            <parameter name="show_caption" xsi:type="select" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
                 <label>Show number of Likes/ Comments</label>
                 <description>Select Yes to show number of Like/Comment when hover image.</description>
                 <depends>

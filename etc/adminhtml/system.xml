@@ -44,41 +44,12 @@
                 <field id="enabled" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Select Yes to enable this module</comment>
+                    <comment><![CDATA[Select Yes to enable this module. </br>
+                    Access <a href="https://developers.facebook.com/" target="_blank">developers.facebook.com</a> to create applications. Please refer this <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">link</a>]]></comment>
                 </field>
-                <field id="client_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Client ID</label>
-                    <validate>required-entry</validate>
-                    <comment><![CDATA[Create app <a href="http://instagram.com/developer/clients/manage/" target="_bank">here.</a> Please refer at this <a href="https://docs.mageplaza.com/social-login-m2/how-to-configure-instagram-api.html" target="_bank">link.</a> to create Client ID ]]></comment>
-                    <depends>
-                        <field id="enabled">1</field>
-                    </depends>
-                </field>
-                <field id="client_secret" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Client Secret</label>
-                    <validate>required-entry</validate>
-                    <depends>
-                        <field id="enabled">1</field>
-                    </depends>
-                </field>
-                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Redirect URI</label>
-                    <frontend_model>Mageplaza\InstagramFeed\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
-                    <depends>
-                        <field id="enabled">1</field>
-                    </depends>
-                </field>
-                <field id="code" translate="label comment" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Code</label>
-                    <comment><![CDATA[Refer to this <a href="https://www.instagram.com/developer/authentication/" target="_blank">link</a> to get the code]]></comment>
-                    <depends>
-                        <field id="enabled">1</field>
-                    </depends>
-                </field>
-                <field id="token" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Get your access Token</button_label>
-                    <button_url>mpinstagramfeed/auth/callback</button_url>
-                    <frontend_model>Mageplaza\InstagramFeed\Block\Adminhtml\System\Config\Button</frontend_model>
+                <field id="access_token" translate="label comment" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>User Token</label>
+                    <comment><![CDATA[Refer to this <a href="https://developers.facebook.com/docs/instagram-basic-display-api/overview#instagram-user-access-tokens" target="_blank">link</a> to get the user token]]></comment>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
@@ -86,21 +57,17 @@
             </group>
             <group id="display" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Display</label>
-                <field id="total_number" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="total_number" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Total number of photos</label>
-                    <validate>validate-zero-or-greater validate-digits required-entry</validate>
-                    <comment>The maximum number is 20.</comment>
+                    <validate>validate-no-empty validate-digits validate-digits-range digits-range-1-25</validate>
+                    <comment>The maximum number is 25.</comment>
                 </field>
-                <field id="sort_by" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Sort by</label>
-                    <source_model>Mageplaza\InstagramFeed\Model\Config\Source\SortBy</source_model>
-                </field>
-                <field id="layout" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="layout" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Layout</label>
                     <source_model>Mageplaza\InstagramFeed\Model\Config\Source\Layout</source_model>
                     <comment>Select to arrange instagram images in one single row, two rows or in an organized layout</comment>
                 </field>
-                <field id="number_row" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="number_row" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Number of row</label>
                     <comment>This value only applies to desktop and images will be automatically responsive depending on the device</comment>
                     <validate>validate-zero-or-greater validate-digits</validate>
@@ -108,16 +75,12 @@
                         <field id="layout">multiple</field>
                     </depends>
                 </field>
-                <field id="image_resolution" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Image resolutions</label>
-                    <source_model>Mageplaza\InstagramFeed\Model\Config\Source\Image</source_model>
-                </field>
-                <field id="show_like_comment" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show number of Likes/ Comments</label>
+                <field id="show_caption" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Caption</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Select Yes to show number of Like/Comment when hover image.</comment>
+                    <comment>Select Yes to show caption when hover image.</comment>
                 </field>
-                <field id="show_popup" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="show_popup" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show pop-up</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to show pop-up when click on image.</comment>
