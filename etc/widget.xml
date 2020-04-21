@@ -59,8 +59,8 @@
                 <value>2</value>
             </parameter>
             <parameter name="show_caption" xsi:type="select" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
-                <label>Show number of Likes/ Comments</label>
-                <description>Select Yes to show number of Like/Comment when hover image.</description>
+                <label>Show Caption</label>
+                <description>Select Yes to show caption when hover image.</description>
                 <depends>
                     <parameter name="design" value="1"/>
                 </depends>
