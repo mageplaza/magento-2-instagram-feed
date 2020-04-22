@@ -76,12 +76,14 @@ define([
                 type: "GET",
                 success: function (data) {
                     var Image_url, item_Link,
-                        items = data.data;
-
-                    for (var x in items) {
-                        var item = data.data[x];
+                        items = data.data,
+                        count = self.options.count;
+                    $.each(items, function (index, item) {
+                        if (index > parseInt(count)) {
+                            return false;
+                        }
                         if (item.media_type === 'VIDEO') {
-                            continue;
+                            return;
                         }
 
                         Image_url = item.media_url;
@@ -92,11 +94,16 @@ define([
                         }
 
                         var photo_Temp = photo_Template
-                            .replace("{{link}}", item_Link)
-                            .replace("{{caption}}", item.caption)
-                            .replace("{{imgSrc}}", Image_url);
+                        .replace("{{link}}", item_Link)
+                        .replace("{{caption}}", item.caption)
+                        .replace("{{imgSrc}}", Image_url);
 
                         $(id).append(photo_Temp);
+                    });
+
+                    for (var x in items) {
+                        var item = data.data[x];
+
                     }
                 },
                 complete: function (data) {
