@@ -59,11 +59,12 @@ define([
         },
 
         _ajaxSubmit: function () {
-            var self = this;
-            var id = "#mpinstagramfeed-photos-" + this.options.id;
-            var photo_Template = '<div class="mpinstagramfeed-photo">' +
+            var self = this,
+                id = "#mpinstagramfeed-photos-" + this.options.id,
+                captionHtml = this.options.show_caption === '1' ? '<div class="mpinstagramfeed-post-caption">{{caption}}</div>' : '',
+                photo_Template = '<div class="mpinstagramfeed-photo">' +
                 '<a class="mpinstagramfeed-post-url " href="{{link}}" target="_blank">' +
-                '<div class="mpinstagramfeed-post-caption">{{caption}}</div>' +
+                    captionHtml +
                 '<img class="mpinstagramfeed-image" src="{{imgSrc}}" alt="">' +
                 '</a></div>';
             $.ajax({
