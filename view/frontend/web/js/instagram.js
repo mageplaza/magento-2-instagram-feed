@@ -101,11 +101,6 @@ define([
 
                         $(id).append(photo_Temp);
                     });
-
-                    for (var x in items) {
-                        var item = data.data[x];
-
-                    }
                 },
                 complete: function (data) {
                     // use shuffle after load images
