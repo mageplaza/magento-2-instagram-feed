@@ -96,7 +96,7 @@ define([
 
                         var photo_Temp = photo_Template
                         .replace("{{link}}", item_Link)
-                        .replace("{{caption}}", item.caption)
+                        .replace("{{caption}}", item.caption ? item.caption : '')
                         .replace("{{imgSrc}}", Image_url);
 
                         $(id).append(photo_Temp);
