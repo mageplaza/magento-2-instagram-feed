@@ -78,9 +78,9 @@ define([
                 success: function (data) {
                     var Image_url, item_Link,
                         items = data.data,
-                        count = self.options.count;
+                        count = 0;
                     $.each(items, function (index, item) {
-                        if (index > parseInt(count)) {
+                        if (count >= parseInt(self.options.count)) {
                             return false;
                         }
                         if (item.media_type === 'VIDEO') {
@@ -100,6 +100,7 @@ define([
                         .replace("{{imgSrc}}", Image_url);
 
                         $(id).append(photo_Temp);
+                        count++;
                     });
                 },
                 complete: function (data) {
