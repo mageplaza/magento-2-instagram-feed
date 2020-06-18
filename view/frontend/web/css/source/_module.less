@@ -1,0 +1,57 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_InstagramFeed
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+.mpinstagramfeed-container .mpinstagramfeed-photo {
+  margin: 2px;
+  display: inline-block;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .mpinstagramfeed-container .mpinstagramfeed-photo .mpinstagramfeed-post-caption {
+    font-size: 20px !important;
+    opacity: 1 !important;
+  }
+}
+
+.mpinstagramfeed-container .mpinstagramfeed-photo .mpinstagramfeed-post-caption {
+  line-height: 18px;
+  letter-spacing: normal;
+  position: absolute;
+  bottom: 0;
+  padding: 5px;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #F0F0F0;
+}
+
+.mpinstagramfeed-photo:hover .mpinstagramfeed-post-caption {
+  opacity: 1 !important;
+  display: inline;
+}
+
+.mpinstagramfeed-container .mpinstagramfeed-photo img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  padding: 0 1px 1px 0;
+}

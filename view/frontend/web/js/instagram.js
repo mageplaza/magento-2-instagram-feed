@@ -59,79 +59,51 @@ define([
         },
 
         _ajaxSubmit: function () {
-            var self = this;
-            var id = "#mpinstagramfeed-photos-" + this.options.id;
-            var photo_Template = '<div class="mpinstagramfeed-photo">' +
+            var self = this,
+                id = "#mpinstagramfeed-photos-" + this.options.id,
+                captionHtml = this.options.show_caption === '1' ? '<div class="mpinstagramfeed-post-caption">{{caption}}</div>' : '',
+                photo_Template = '<div class="mpinstagramfeed-photo">' +
                 '<a class="mpinstagramfeed-post-url " href="{{link}}" target="_blank">' +
-                '<i class="fa-heart">{{like}}</i>' +
-                '<i class="fa-comment">{{comment}}</i>' +
+                    captionHtml +
                 '<img class="mpinstagramfeed-image" src="{{imgSrc}}" alt="">' +
                 '</a></div>';
             $.ajax({
-                url: "https://api.instagram.com/v1/users/self/media/recent/",
+                url: "https://graph.instagram.com/me/media",
                 data: {
                     access_token: this.options.token,
-                    count: this.options.count
+                    fields: 'id, caption, media_type, media_url, permalink'
                 },
                 dataType: "json",
                 type: "GET",
                 success: function (data) {
-                    var Image_url;
-                    var item_Link;
-                    var items = data.data;
-                    switch (self.options.sort) {
-                        case "like":
-                            items.sort(function (a, b) {
-                                return b.likes.count - a.likes.count
-                            });
-                            break;
-                        case "comment":
-                            items.sort(function (a, b) {
-                                return b.comments.count - a.comments.count
-                            });
-                            break;
-                        case "random":
-                            items.sort(function () {
-                                return Math.random() - Math.random()
-                            });
-                            break;
-                        default:
-                            items.sort(function (a, b) {
-                                return b.created_time - a.created_time
-                            });
-                    }
-                    for (var x in items) {
-                        var item = data.data[x];
-                        switch (self.options.image_resolution) {
-                            case "low":
-                                Image_url = item.images.low_resolution.url;
-                                break;
-                            case "standard":
-                                Image_url = item.images.standard_resolution.url;
-                                break;
-                            default:
-                                Image_url = item.images.thumbnail.url;
+                    var Image_url, item_Link,
+                        items = data.data,
+                        count = 0;
+                    $.each(items, function (index, item) {
+                        if (count >= parseInt(self.options.count)) {
+                            return false;
                         }
+                        if (item.media_type === 'VIDEO') {
+                            return;
+                        }
+
+                        Image_url = item.media_url;
                         if (self.options.show_popup === "1") {
-                            item_Link = item.images.standard_resolution.url;
+                            item_Link = Image_url;
                         } else {
-                            item_Link = item.link;
+                            item_Link = item.permalink;
                         }
 
                         var photo_Temp = photo_Template
-                            .replace("{{link}}", item_Link)
-                            .replace("{{comment}}", item.comments.count)
-                            .replace("{{like}}", item.likes.count)
-                            .replace("{{imgSrc}}", Image_url);
+                        .replace("{{link}}", item_Link)
+                        .replace("{{caption}}", item.caption ? item.caption : '')
+                        .replace("{{imgSrc}}", Image_url);
 
                         $(id).append(photo_Temp);
-                    }
+                        count++;
+                    });
                 },
                 complete: function (data) {
-                    if (self.options.show_like_comment === "1") {
-                        var element = id + ' .mpinstagramfeed-photo i';
-                        $(element).addClass('fa');
-                    }
                     // use shuffle after load images
                     if (self.options.layout === "optimized") {
                         self.demo(id);
@@ -141,8 +113,7 @@ define([
                     }
                 },
                 error: function (data) {
-                    //ToDO: handle error
-                    // console.log(data);
+                    console.log(data);
                 }
             });
         },

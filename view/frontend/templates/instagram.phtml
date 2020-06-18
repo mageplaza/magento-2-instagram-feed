@@ -21,12 +21,12 @@
 
 /** @var Mageplaza\InstagramFeed\Block\Widget $block */
 if ($block->isEnable()) :
-    $widgetId = uniqid();
+    $widgetId = uniqid('-', false);
     $options = $block->getAllOptions();
     $total = $options['total_number'];
-    $image = $options['image_resolution'];
-    $width = $block->getNumberRow($options["layout"]) != null ? $block->calcWidth() . '%' : $block->calcWidth() . 'px';
-    $sizeIcon = ($block->calcWidth() < 6) ? '10px' : '20px';
+    $calcWidth = $block->calcWidth();
+    $width = $block->getNumberRow($options['layout']) ? $calcWidth . '%' : $calcWidth . 'px';
+    $sizeIcon = ($calcWidth < 10) ? '10px' : '20px';
     ?>
     <div class="mpinstagramfeed-container">
         <div class="mpinstagramfeed-header">
@@ -39,7 +39,7 @@ if ($block->isEnable()) :
         #mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId?> .mpinstagramfeed-photo {
             width: calc(<?= /** @noEscape */ $width ?> - 4px);
         }
-        .mpinstagramfeed-container .mpinstagramfeed-photo .fa {
+        .mpinstagramfeed-container .mpinstagramfeed-photo .mpinstagramfeed-post-caption {
             font-size: <?= /** @noEscape */ $sizeIcon ?>;
         }
         @media (max-width: 767px) {
@@ -66,10 +66,8 @@ if ($block->isEnable()) :
                 "id": "<?= /** @noEscape */ $widgetId ?>",
                 "token": "<?= /** @noEscape */ $block->getAccessToken() ?>",
                 "count": "<?= /** @noEscape */ $total ?>",
-                "sort": "<?= /** @noEscape */ $options['sort_by'] ?>",
-                "image_resolution": "<?= /** @noEscape */ $image ?>",
                 "layout": "<?= /** @noEscape */ $options['layout'] ?>",
-                "show_like_comment": "<?= /** @noEscape */ $options['show_like_comment'] ?>",
+                "show_caption": "<?= /** @noEscape */ $options['show_caption'] ?>",
                 "show_popup": "<?= /** @noEscape */ $options['show_popup'] ?>"
             }
         }
