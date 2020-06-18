@@ -51,8 +51,8 @@ class Converter extends \Magento\Widget\Model\Config\Converter
                 );
             }
             $parameterAttributes = $childNode->attributes;
-            $dependencyName = $parameterAttributes->getNamedItem('name')->nodeValue;
-            $dependencyValue = $parameterAttributes->getNamedItem('value')->nodeValue;
+            $dependencyName      = $parameterAttributes->getNamedItem('name')->nodeValue;
+            $dependencyValue     = $parameterAttributes->getNamedItem('value')->nodeValue;
 
             if (!isset($depends[$dependencyName])) {
                 $depends[$dependencyName] = [
