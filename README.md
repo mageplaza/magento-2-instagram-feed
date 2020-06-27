@@ -44,6 +44,14 @@ A: This block can properly work with both mobile, tablet, and PC device.
 
 Install via composer (recommend): Run the following command in Magento 2 root folder:
 
+With Social Proof (recommend):
+```
+composer require mageplaza/module-instagram-feed avada/module-proofo
+php bin/magento setup:upgrade
+php bin/magento setup:static-content:deploy
+```
+
+Without Social Proof:
 ```
 composer require mageplaza/module-instagram-feed
 php bin/magento setup:upgrade
