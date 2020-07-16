@@ -36,7 +36,7 @@
             </parameter>
             <parameter name="total_number" xsi:type="text" required="true" visible="true">
                 <label>Total number of photos</label>
-                <description>The maximum number is 20.</description>
+                <description>The maximum number is 25.</description>
                 <depends>
                     <parameter name="design" value="1"/>
                 </depends>
