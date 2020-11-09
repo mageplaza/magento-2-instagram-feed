@@ -29,8 +29,8 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class Layout implements ArrayInterface
 {
-    const SINGLE    = 'single';
-    const MULTIPLE  = 'multiple';
+    const SINGLE = 'single';
+    const MULTIPLE = 'multiple';
     const OPTIMIZED = 'optimized';
 
     /**

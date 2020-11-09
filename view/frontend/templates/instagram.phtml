@@ -20,7 +20,7 @@
  */
 
 /** @var Mageplaza\InstagramFeed\Block\Widget $block */
-if ($block->isEnable()) :
+if ($block->isEnable()):
     $widgetId = uniqid('-', false);
     $options = $block->getAllOptions();
     $total = $options['total_number'];
