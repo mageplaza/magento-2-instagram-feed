@@ -77,7 +77,7 @@ class Widget extends Template implements BlockInterface
      */
     public function getAllOptions()
     {
-        $option = (int) $this->getData('design');
+        $option = (int)$this->getData('design');
         if ($option === Design::CONFIG) {
             $this->setData(array_merge($this->helperData->getDisplayConfig($this->getStoreId()), $this->getData()));
         }
@@ -111,8 +111,8 @@ class Widget extends Template implements BlockInterface
      */
     public function calcWidth()
     {
-        $type       = $this->getData('layout');
-        $total      = $this->getData('total_number');
+        $type = $this->getData('layout');
+        $total = $this->getData('total_number');
         $number_row = $this->getNumberRow($type);
         if (!empty($number_row)) {
             return (100 / round($total / $number_row));
