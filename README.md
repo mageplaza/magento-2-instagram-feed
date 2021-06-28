@@ -59,11 +59,11 @@ php bin/magento setup:static-content:deploy
 ```
 
 
-## 4. Highlight Features
+## 4. Highlight Features of Magento 2 Instagram Feed
 
 ### Display Instagram Images anywhere on site 
 
-**Instagram Feed Widget by Mageplaza **support store admin in updating trendy eye-catching Instagram images on any specific pages on your store site.
+**Magento 2 Instagram Feed Widget by Mageplaza** support store admin in updating trendy eye-catching Instagram images on any specific pages on your store site.
 
 Admins can easily create Instagram Widget then **embed Instagram block on the homepage**, **product listing page**, **product page** or any **CMS pages**, based on their specific purposes. 
 
@@ -72,7 +72,7 @@ This flexibility allows store owners to easily place the high-quality and good-l
 ![Magento 2 Instagram Feed Widget](https://i.imgur.com/SMuVbVs.png)
 
 ### Sorting image function 
-One of the most noticeable functions of Instagram Feed is that the store owner can quickly sort the photos from Instagram photo library, based on specific criteria, which are:
+One of the most noticeable functions of [Magento 2 Instagram Feed](https://marketplace.magento.com/mageplaza-module-instagram-feed.html) is that the store owner can quickly sort the photos from Instagram photo library, based on specific criteria, which are:
 
 - Most recent images 
 - Most liked images
@@ -95,7 +95,7 @@ Instagram images can be flexibly featured, thanks to the various options of layo
 
 ### Show the number of Likes and Comments
 
-To effectively convince customers, Instagram Feed enable displaying the number of Likes and Comments on every image.
+To effectively convince customers, Magento 2 Instagram Feed enable displaying the number of Likes and Comments on every image.
 
 The customers tend to feel more interested in the images which can gain more social visibility and concern. Showing numbers of likes and comments is a good way to present your Instagram Photos' social interaction and make the store site become more interactive than ever.
 
@@ -109,7 +109,7 @@ On the storefront, customers can take a more detailed look to any Instagram imag
 
 ![Instagram Popup](https://i.imgur.com/z6di7ws.png)
 
-## 5. More features
+## 5. More features of Instagram Feed
 
 ### Description for the Instagram Block
 Easily set the title and description for the Instagram Block 
