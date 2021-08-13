@@ -33,11 +33,9 @@
                     <frontend_model>Mageplaza\Core\Block\Adminhtml\System\Config\Head</frontend_model>
                     <comment><![CDATA[
                         <ul class="mageplaza-head">
-                            <li><a href="https://github.com/magepages/mpdocs/blob/master/docs/instagram-feed/index.md" target="_blank">User Guide</a></li>
-                            <li><a href="https://www.mageplaza.com/contact.html" target="_blank">Contact Us</a> </li>
-                            <li><a href="https://goo.gl/forms/SrTm7YUxZoCzixhH3" target="_blank">Request features</a> </li>
                             <li>Allow customers to login with <a href="https://www.mageplaza.com/magento-2-social-login-extension/?utm_source=extension&utm_medium=text&utm_campaign=facebook" target="_blank">Mageplaza Social Login</a></li>
-                            <span>It is free to download and use.</span>
+                            <li>It helps to reduce abandonment cart with <a href="https://www.mageplaza.com/magento-2-one-step-checkout-extension/" target="_blank">One Step Checkout</a></li>
+                            <li>Magento stores see upwards of 30% revenue 💰 with AVADA. <a href="https://go.avada.io/mageplaza">Learn more</a></li>
                         </ul>
                         ]]></comment>
                 </field>
