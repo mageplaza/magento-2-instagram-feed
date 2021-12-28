@@ -63,16 +63,12 @@ define([
                 id = "#mpinstagramfeed-photos-" + this.options.id,
                 captionHtml = this.options.show_caption === '1' ? '<div class="mpinstagramfeed-post-caption">{{caption}}</div>' : '',
                 photo_Template = '<div class="mpinstagramfeed-photo">' +
-                '<a class="mpinstagramfeed-post-url " href="{{link}}" target="_blank">' +
+                    '<a class="mpinstagramfeed-post-url " href="{{link}}" target="_blank">' +
                     captionHtml +
-                '<img class="mpinstagramfeed-image" src="{{imgSrc}}" alt="">' +
-                '</a></div>';
+                    '<img class="mpinstagramfeed-image" src="{{imgSrc}}" alt="">' +
+                    '</a></div>';
             $.ajax({
-                url: "https://graph.instagram.com/me/media",
-                data: {
-                    access_token: this.options.token,
-                    fields: 'id, caption, media_type, media_url, permalink'
-                },
+                url: this.options.url,
                 dataType: "json",
                 type: "GET",
                 success: function (data) {
@@ -95,9 +91,9 @@ define([
                         }
 
                         var photo_Temp = photo_Template
-                        .replace("{{link}}", item_Link)
-                        .replace("{{caption}}", item.caption ? item.caption : '')
-                        .replace("{{imgSrc}}", Image_url);
+                            .replace("{{link}}", item_Link)
+                            .replace("{{caption}}", item.caption ? item.caption : '')
+                            .replace("{{imgSrc}}", Image_url);
 
                         $(id).append(photo_Temp);
                         count++;

@@ -64,7 +64,7 @@ if ($block->isEnable()):
         "#mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?>": {
             "mageplaza/instagram": {
                 "id": "<?= /** @noEscape */ $widgetId ?>",
-                "token": "<?= /** @noEscape */ $block->getAccessToken() ?>",
+                "token": "<?= /** @noEscape */ $block->getUrl('mp_instagram/feed/get') ?>",
                 "count": "<?= /** @noEscape */ $total ?>",
                 "layout": "<?= /** @noEscape */ $options['layout'] ?>",
                 "show_caption": "<?= /** @noEscape */ $options['show_caption'] ?>",
