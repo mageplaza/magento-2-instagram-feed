@@ -39,33 +39,53 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\InstagramFeed\Model\Cache\Type as CacheType;
 
+/**
+ * Class Get
+ * @package Mageplaza\InstagramFeed\Controller\Feed
+ */
 class Get extends Action
 {
-    /** @var JsonFactory */
+    const API_URL = 'https://graph.instagram.com/me/media';
+
+    /**
+     * @var JsonFactory
+     */
     protected $_resultJsonFactory;
 
-    /** @var StoreManagerInterface */
+    /**
+     * @var StoreManagerInterface
+     */
     protected $_storeManager;
 
-    /** @var Cache */
+    /**
+     * @var Cache
+     */
     protected $_cache;
 
-    /** @var Cache\State */
+    /** @var
+     * Cache\State
+     */
     protected $_cacheState;
 
-    /** @var ScopeConfigInterface */
+    /**
+     * @var ScopeConfigInterface
+     */
     protected $_scopeConfig;
 
-    /** @var Curl */
+    /**
+     * @var Curl
+     */
     protected $_curl;
 
-    /** @var Json */
+    /**
+     * @var Json
+     */
     protected $_json;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $id;
-
-    const API_URL = 'https://graph.instagram.com/me/media';
 
     /**
      * @param Context $context
@@ -88,13 +108,13 @@ class Get extends Action
         Json $json
     ) {
         $this->_resultJsonFactory = $resultJsonFactory;
-        $this->_storeManager = $_storeManager;
-        $this->_cache = $cache;
-        $this->_cacheState = $cacheState;
-        $this->_scopeConfig = $scopeConfig;
-        $this->_curl = $curl;
-        $this->_json = $json;
-        $this->id = $this->getId();
+        $this->_storeManager      = $_storeManager;
+        $this->_cache             = $cache;
+        $this->_cacheState        = $cacheState;
+        $this->_scopeConfig       = $scopeConfig;
+        $this->_curl              = $curl;
+        $this->_json              = $json;
+        $this->id                 = $this->getId();
         parent::__construct($context);
     }
 
@@ -106,8 +126,7 @@ class Get extends Action
         $result = $this->_resultJsonFactory->create();
         try {
             // Redirect to 404 if request isn't AJAX or if instagram feed is disabled
-            if (
-                !$this->getRequest()->isAjax() ||
+            if (!$this->getRequest()->isAjax() ||
                 !$this->_scopeConfig->getValue('mpinstagramfeed/general/enabled', ScopeInterface::SCOPE_STORE)
             ) {
                 return $this->_redirect('noroute');
@@ -127,20 +146,25 @@ class Get extends Action
                 if ($this->_cacheState->isEnabled(CacheType::TYPE_IDENTIFIER)) {
                     // Save to cache if response was successful and return it
                     $this->save($this->_curl->getBody(), $this->id);
+
                     return $result->setData($this->_json->unserialize($this->_cache->load($this->id)));
                 }
+
                 // If cache type is disabled, just return the curl response
                 return $result->setData($this->_json->unserialize($this->_curl->getBody()));
             }
 
             // Call to Graph API threw an error
             $result->setHttpResponseCode(HttpException::HTTP_BAD_REQUEST);
+
             return $result->setData($this->_json->unserialize($this->_curl->getBody()));
         } catch (Exception $e) {
             $result->setHttpResponseCode(HttpException::HTTP_BAD_REQUEST);
+
             return $result->setData(['error' => $e->getMessage()]);
         } catch (InvalidArgumentException $e) {
             $result->setHttpResponseCode(HttpException::HTTP_INTERNAL_ERROR);
+
             return $result->setData(['error' => $e->getMessage()]);
         }
     }
@@ -160,7 +184,9 @@ class Get extends Action
 
     /**
      * Load cached value if cache type is enabled
+     *
      * @param $cacheId
+     *
      * @return bool|string
      */
     public function load($cacheId)
@@ -168,13 +194,16 @@ class Get extends Action
         if ($this->_cacheState->isEnabled(CacheType::TYPE_IDENTIFIER)) {
             return $this->_cache->load($cacheId) ?: false;
         }
+
         return false;
     }
 
     /**
      * Save data to cache type if enabled
+     *
      * @param $data
      * @param $cacheId
+     *
      * @return bool
      */
     public function save($data, $cacheId)
@@ -182,6 +211,7 @@ class Get extends Action
         if ($this->_cacheState->isEnabled(CacheType::TYPE_IDENTIFIER)) {
             return $this->_cache->save($data, $cacheId, [CacheType::CACHE_TAG], CacheType::CACHE_LIFETIME);
         }
+
         return false;
     }
 
@@ -191,9 +221,10 @@ class Get extends Action
     protected function getFeedUrl()
     {
         $token = $this->_scopeConfig->getValue('mpinstagramfeed/general/access_token', ScopeInterface::SCOPE_STORE);
+
         return self::API_URL . '?' . http_build_query([
                 'access_token' => $token,
-                'fields' => 'id, caption, media_type, media_url, permalink'
+                'fields'       => 'id, caption, media_type, media_url, permalink'
             ]);
     }
 }
