@@ -68,11 +68,7 @@ define([
                 '<img class="mpinstagramfeed-image" src="{{imgSrc}}" alt="">' +
                 '</a></div>';
             $.ajax({
-                url: "https://graph.instagram.com/me/media",
-                data: {
-                    access_token: this.options.token,
-                    fields: 'id, caption, media_type, media_url, permalink'
-                },
+                url: this.options.url,
                 dataType: "json",
                 type: "GET",
                 success: function (data) {
