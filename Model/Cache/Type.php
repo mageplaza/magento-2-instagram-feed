@@ -24,6 +24,10 @@ namespace Mageplaza\InstagramFeed\Model\Cache;
 use Magento\Framework\App\Cache\Type\FrontendPool;
 use Magento\Framework\Cache\Frontend\Decorator\TagScope;
 
+/**
+ * Class Type
+ * @package Mageplaza\InstagramFeed\Model\Cache
+ */
 class Type extends TagScope
 {
     const TYPE_IDENTIFIER = 'instagram_feed';
